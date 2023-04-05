@@ -1,4 +1,6 @@
---------------------------------------------------------------------- File Name: style.css ---------------------------------------------------------------------*/
+--------------------------------------------------------------------- File Name: style.css --------------------------------------------------------------------- *
+
+/
 /*--------------------------------------------------------------------- import Files ---------------------------------------------------------------------*/
 
 @import url(animate.min.css);
@@ -100,7 +102,7 @@ h4 a,
 h5 a,
 h6 a {
     color: #212121;
-    text-decoration: none!important;
+    text-decoration: none !important;
     opacity: 1
 }
 
@@ -145,7 +147,7 @@ img {
     height: auto;
 }
 
- :focus {
+:focus {
     outline: 0;
 }
 
@@ -336,6 +338,7 @@ button {
     .sidenav {
         padding-top: 15px;
     }
+
     .sidenav a {
         font-size: 18px;
     }
@@ -376,7 +379,7 @@ button {
     border-color: #30302e;
 }
 
-.show>.btn-secondary.dropdown-toggle:focus {
+.show > .btn-secondary.dropdown-toggle:focus {
     box-shadow: none;
 }
 
