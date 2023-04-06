@@ -726,7 +726,7 @@ a:hover {
 .jewellery_section {
     width: 100%;
     float: left;
-    padding-bottom: 50px;
+    padding-bottom: 160px;
 }
 
 .jewellery_img {
@@ -738,12 +738,12 @@ a:hover {
 
 #jewellery_main_slider a.carousel-control-next {
     right: 615px;
-    top: 75%;
+    top: 105%;
 }
 
 #jewellery_main_slider a.carousel-control-prev {
     left: 615px;
-    top: 75%;
+    top: 105%;
 }
 
 #jewellery_main_slider .carousel-control-next,
@@ -805,15 +805,17 @@ a:hover {
     }
 }
 
-
 /* loader bar css end */
-
 
 /* jewellery section end */
 
+/* other items section start */
 
-/* footer section start */
+.other-items .row{
+    margin-bottom: 5%;
+}
 
+/* other items section end */
 
 /* footer section start */
 
@@ -955,6 +957,5 @@ input.mail_bt::placeholder {
 .margin_top90 {
     margin-top: 90px;
 }
-
 
 /* copyright section end */
