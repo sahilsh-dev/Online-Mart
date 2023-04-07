@@ -811,6 +811,10 @@ a:hover {
 
 /* other items section start */
 
+.other-items {
+    margin-top: 40%;
+}
+
 .other-items .row{
     margin-bottom: 5%;
 }

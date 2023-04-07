@@ -23,5 +23,10 @@ def jewellery():
     return render_template("jewellery.html")
 
 
+@app.route("/items")
+def items():
+    return render_template("items.html")
+
+
 if __name__ == '__main__':
     app.run()
