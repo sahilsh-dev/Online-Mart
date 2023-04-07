@@ -220,6 +220,7 @@ button {
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
+    margin-bottom: 4%;
 }
 
 
@@ -810,10 +811,6 @@ a:hover {
 /* jewellery section end */
 
 /* other items section start */
-
-.other-items {
-    margin-top: 40%;
-}
 
 .other-items .row{
     margin-bottom: 5%;
