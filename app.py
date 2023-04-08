@@ -1,9 +1,34 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
+app.app_context().push()
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///items.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 
-@app.route('/')
+class Item(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    type = db.Column(db.String(100), nullable=False)
+    added_date = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+db.create_all()
+
+new_item = Item(
+    name="t-shirt-1",
+    price=120,
+    type="t-shirt",
+)
+db.session.add(new_item)
+db.session.commit()
+
+
+@app.route("/")
 def home():
     return render_template("index.html")
 
@@ -28,5 +53,5 @@ def items():
     return render_template("items.html")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
