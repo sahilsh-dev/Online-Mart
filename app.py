@@ -11,21 +11,15 @@ db = SQLAlchemy(app)
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    about = db.Column(db.String(250), nullable=True)
     price = db.Column(db.Integer, nullable=False)
     type = db.Column(db.String(100), nullable=False)
+    file_name = db.Column(db.String(100), unique=True, nullable=True)
     added_date = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 db.create_all()
-
-new_item = Item(
-    name="t-shirt-1",
-    price=120,
-    type="t-shirt",
-)
-db.session.add(new_item)
-db.session.commit()
 
 
 @app.route("/")
@@ -48,10 +42,11 @@ def jewellery():
     return render_template("jewellery.html")
 
 
-@app.route("/items")
-def items():
-    return render_template("items.html")
+@app.route("/items/<string:item_type>")
+def load_items(item_type):
+    items = Item.query.filter_by(type=item_type).all()
+    return render_template("items.html", items=items)
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
