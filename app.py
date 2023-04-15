@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from sqlalchemy import or_
 
 app = Flask(__name__)
 app.app_context().push()
@@ -30,17 +31,20 @@ def home():
 
 @app.route("/fashion")
 def fashion():
-    return render_template("fashion.html")
+    other_items = Item.query.filter(or_(Item.type == "t-shirt", Item.type == "shirt", Item.type == "skirt")).limit(12).all()
+    return render_template("fashion.html", other_items=other_items)
 
 
 @app.route("/electronic")
 def electronic():
-    return render_template("electronic.html")
+    other_items = Item.query.filter(or_(Item.type == "mobile", Item.type == "laptop", Item.type == "computer")).limit(12).all()
+    return render_template("electronic.html", other_items=other_items)
 
 
 @app.route("/jewellery")
 def jewellery():
-    return render_template("jewellery.html")
+    other_items = Item.query.filter(or_(Item.type == "jhumka", Item.type == "necklace", Item.type == "kangan")).limit(12).all()
+    return render_template("jewellery.html", other_items=other_items)
 
 
 @app.route("/items/<string:item_type>")
