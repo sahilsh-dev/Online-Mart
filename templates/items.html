@@ -8,19 +8,19 @@
             {% if loop.index0 % 3 == 0 %}
                 <div class="row">
             {% endif %}
-            <div class="col-lg-4 col-sm-4">
-                <div class="box_main">
-                    <h4 class="shirt_text">{{ item.name }}</h4>
-                    <p class="price_text">Price : <span style="color: #262626;">₹{{ item.price }}</span></p>
-                    <div class="jewellery_img"><img src="/static/images/items/{{ item.file_name }}"></div>
-                    <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                    </div>
+        <div class="col-lg-4 col-sm-4">
+            <div class="box_main">
+                <h4 class="shirt_text">{{ item.name }}</h4>
+                <p class="price_text">Price : <span style="color: #262626;">₹{{ item.price }}</span></p>
+                <div class="jewellery_img"><img src="/static/images/items/{{ item.file_name }}"></div>
+                <div class="btn_main">
+                    <div class="buy_bt"><a href="#">Buy Now</a></div>
                 </div>
             </div>
-            {% if loop.index0 % 3 == 2 or loop.last %}
-                </div>
-            {% endif %}
+        </div>
+        {% if loop.index0 % 3 == 2 or loop.last %}
+            </div>
+        {% endif %}
         {% endfor %}
     </div>
 {% endblock %}

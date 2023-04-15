@@ -24,7 +24,8 @@ db.create_all()
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    other_items = Item.query.order_by(Item.added_date.desc()).limit(12).all()
+    return render_template("index.html", other_items=other_items)
 
 
 @app.route("/fashion")
