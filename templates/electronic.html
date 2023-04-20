@@ -19,7 +19,7 @@
                                         <div class="electronic_img"><img src="/static/images/laptop-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
+                                            <div class="seemore_bt"><a href="{{ url_for('load_items', item_type='laptop') }}">See More</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                                         <div class="electronic_img"><img src="/static/images/mobile-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
+                                            <div class="seemore_bt"><a href="{{ url_for('load_items', item_type='mobile') }}">See More</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                         <div class="electronic_img"><img src="/static/images/computer-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
+                                            <div class="seemore_bt"><a href="{{ url_for('load_items', item_type='computer') }}">See More</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -49,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+                <!--
                 <div class="carousel-item">
                     <div class="container">
                         <h1 class="fashion_taital">Electronic</h1>
@@ -133,6 +134,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
             <a class="carousel-control-prev" href="#electronic_main_slider" role="button" data-slide="prev">
                 <i class="fa fa-angle-left"></i>
