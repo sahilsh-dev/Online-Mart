@@ -5,7 +5,7 @@ An E-commerce website using Flask, SQLAlchemy and Bootstrap.
 To install the required packages, run the following command:
 
 ```  
-pip install flask  
+pip install flask Flask-SQLAlchemy  
 ```
 
 ## Usage
