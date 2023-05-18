@@ -442,7 +442,7 @@
                 <p class="price_text">Price : <span style="color: #262626;">₹{{ item.price }}</span></p>
                 <div class="jewellery_img"><img src="/static/images/items/{{ item.file_name }}"></div>
                 <div class="btn_main">
-                    <div class="buy_bt"><a href="#">Buy Now</a></div>
+                    <div class="buy_bt"><a href="{{ url_for('buy_item', item_id=item.id) }}">Buy Now</a></div>
                 </div>
             </div>
         </div>

@@ -265,6 +265,10 @@ button {
     color: #f26522;
 }
 
+.buy_page_header {
+    margin-bottom: 5%;
+}
+
 
 /* header top section end */
 
@@ -959,3 +963,6 @@ input.mail_bt::placeholder {
 }
 
 /* copyright section end */
+h1, h2, h3, h4, h5 .buy-item-data {
+   position: static;
+}

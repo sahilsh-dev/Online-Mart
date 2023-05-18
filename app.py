@@ -53,5 +53,11 @@ def load_items(item_type):
     return render_template("items.html", items=items)
 
 
+@app.route("/buy/<int:item_id>")
+def buy_item(item_id):
+    item_to_buy = Item.query.get(item_id)
+    return render_template("buy.html", item_data=item_to_buy)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
