@@ -265,7 +265,7 @@ button {
     color: #f26522;
 }
 
-.buy_page_header {
+.buy-page-header {
     margin-bottom: 5%;
 }
 
@@ -963,6 +963,67 @@ input.mail_bt::placeholder {
 }
 
 /* copyright section end */
-h1, h2, h3, h4, h5 .buy-item-data {
+
+/* buy page start*/
+
+h1, h2, h3, h4, h5 .items-data {
    position: static;
 }
+
+.quantity-input {
+    width: 60px;
+}
+
+.quantity-input {
+    text-align: center;
+}
+
+.quantity-setter p {
+    margin-left: 30px;
+}
+
+.quantity-setter .decrement-btn,
+.quantity-setter .increment-btn {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #E5B642;
+  color: #FFF;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.quantity-setter .decrement-btn:hover {
+  background-color: #D2A439;
+}
+
+.quantity-setter .increment-btn:hover {
+  background-color: #D2A439;
+}
+
+.items-data {
+    padding: 7% 14%;
+}
+
+.buy-item-img {
+    float: left;
+}
+
+.items-data hr{
+    margin-bottom: 2.5rem;
+}
+
+.item-info {
+    margin-left: 20%;
+    margin-bottom: 10%;
+}
+
+.proceed-to-buy-button {
+    clear: left;
+}
+
+/* buy page end */
