@@ -142,21 +142,23 @@
     <!-- banner bg main end -->
 
     <!-- Item-data section start-->
-    <div class="items-data">
-        <h2>Shopping Cart</h2>
+    <div class="cart">
+        <h1 class="section-heading">Shopping Cart</h1>
         <hr>
-        <img class="buy-item-img" src="/static/images/items/{{ item_data.file_name }}">
-        <div class="item-info">
-            <h4> {{ item_data.name }} {{ item_data.type }} </h4>
-            <h4> Price : ₹{{ item_data.price }} </h4>
-            <div class="quantity-setter">
-                <p>Quantity</p>
-                <button class="decrement-btn" onclick="decrementQuantity()">-</button>
-                <input type="number" class="quantity-input" value="1" min="1" max="10" style="-moz-appearance: textfield; -webkit-appearance: textfield; appearance: textfield;"/>
-                <button class="increment-btn" onclick="incrementQuantity()">+</button>
+        <div class="cart-items">
+            <img class="buy-item-img" src="/static/images/items/{{ item_data.file_name }}">
+            <div class="item-info">
+                <h2 class="small-heading"> {{ item_data.name }} {{ item_data.type }} </h2>
+                <h4> Price : ₹{{ item_data.price }} </h4>
+                <div class="quantity-setter">
+                    <p>Quantity</p>
+                    <button class="decrement-btn" onclick="decrementQuantity()">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1" max="10" style="-moz-appearance: textfield; -webkit-appearance: textfield; appearance: textfield;"/>
+                    <button class="increment-btn" onclick="incrementQuantity()">+</button>
+                </div>
             </div>
+            <hr>
         </div>
-        <hr>
         <button class="btn btn-primary proceed-to-buy-button">Proceed to Buy</button>
     </div>
     <!-- Item-data section end -->

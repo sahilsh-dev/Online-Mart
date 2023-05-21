@@ -563,7 +563,7 @@ a:hover {
     padding-bottom: 150px;
 }
 
-.fashion_taital {
+.section-heading {
     width: 100%;
     font-size: 40px;
     color: #30302e;
@@ -585,7 +585,7 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.shirt_text {
+.small-heading {
     width: 100%;
     font-size: 20px;
     color: #30302e;
@@ -931,7 +931,6 @@ input.mail_bt::placeholder {
 
 /* footer section end */
 
-
 /* copyright section start */
 
 .copyright_section {
@@ -964,10 +963,14 @@ input.mail_bt::placeholder {
 
 /* copyright section end */
 
-/* buy page start*/
+/* cart items start */
 
-h1, h2, h3, h4, h5 .items-data {
+h1, h2, h3, h4, h5 .cart {
    position: static;
+}
+
+.cart-items .small-heading {
+    text-align: left;
 }
 
 .quantity-input {
@@ -976,10 +979,6 @@ h1, h2, h3, h4, h5 .items-data {
 
 .quantity-input {
     text-align: center;
-}
-
-.quantity-setter p {
-    margin-left: 30px;
 }
 
 .quantity-setter .decrement-btn,
@@ -1005,25 +1004,28 @@ h1, h2, h3, h4, h5 .items-data {
   background-color: #D2A439;
 }
 
-.items-data {
+.cart {
     padding: 7% 14%;
 }
 
 .buy-item-img {
     float: left;
+    margin-left: 25%;
+    margin-right: 5%;
+    max-width: 250px;
 }
 
-.items-data hr{
+.cart hr{
     margin-bottom: 2.5rem;
 }
 
 .item-info {
-    margin-left: 20%;
-    margin-bottom: 10%;
+    margin: 5% 0 14% 20%;
 }
 
 .proceed-to-buy-button {
-    clear: left;
+    display: block;
+    margin: 0 auto;
 }
 
-/* buy page end */
+/* cart items end */
