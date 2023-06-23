@@ -16,3 +16,10 @@ python app.py
 ```
 
 This will start the Flask server and you can access the application by going to http://localhost:5000 in your web browser.
+
+<br>
+
+# 🚧 This project is currently under construction. 🚧
+
+Thank you for visiting! This repository is a work in progress, and I appreciate your patience while I learn some skills to build and improve upon this project.
+
