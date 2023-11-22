@@ -1,14 +1,13 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request
-from flask_sqlalchemy import SQLAlchemy
+from models import db, Product
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
+db.init_app(app)
 
 
 @app.route('/')
@@ -18,7 +17,8 @@ def home():
 
 @app.route('/shop')
 def shop():
-    return render_template('shop.html')
+    products = Product.query.all()
+    return render_template('shop.html', products=products)
 
     
 if __name__ == '__main__':
