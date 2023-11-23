@@ -15,8 +15,9 @@ db.init_app(app)
 def home():
     threshold_date = datetime.utcnow() - timedelta(days=30)
     new_arrivals = Product.query.filter(Product.created_at > threshold_date).all()
-    
-    return render_template('index.html', new_arrivals=new_arrivals)
+    best_sellers_collection = Collection.query.get('best sellers').products
+    best_sellers = [Product.query.get(collection_item.product_id) for collection_item in best_sellers_collection]
+    return render_template('index.html', new_arrivals=new_arrivals, best_sellers=best_sellers)
 
 
 @app.route('/shop')
@@ -24,6 +25,6 @@ def shop():
     products = Product.query.all()
     return render_template('shop.html', products=products)
 
-    
+     
 if __name__ == '__main__':
     app.run(debug=True)
