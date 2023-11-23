@@ -13,7 +13,7 @@ class Product(db.Model):
     images = db.relationship('ProductImage', backref='product', lazy=True) 
     
     def __repr__(self):
-        return f'<Product {self.id} - {self.product_name}>'
+        return f'<Product {self.product_name}>'
     
 
 class ProductImage(db.Model):
@@ -24,3 +24,19 @@ class ProductImage(db.Model):
 
     def __repr__(self):
         return f'<Student {self.file_name}>'
+
+
+class Collection(db.Model):
+    __tablename__ = "collections"
+    collection_name = db.Column(db.String(100), primary_key=True)
+    products = db.relationship('CollectionItem', backref='collection', lazy=True)
+    
+    def __repr__(self):
+        return f'<Collection {self.collection_name}>'
+    
+
+class CollectionItem(db.Model):
+    __tablename__ = "collection_items"
+    id = db.Column(db.Integer, primary_key=True)
+    collection_name = db.Column(db.String(100), db.ForeignKey('collections.collection_name'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)

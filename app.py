@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request
-from models import db, Product
+from models import db, Product, Collection
 from datetime import datetime, timedelta
 
 basedir = os.path.abspath(os.path.dirname(__file__))
