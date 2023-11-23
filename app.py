@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request
 from models import db, Product
+from datetime import datetime, timedelta
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -12,7 +13,10 @@ db.init_app(app)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    threshold_date = datetime.utcnow() - timedelta(days=30)
+    new_arrivals = Product.query.filter(Product.created_at > threshold_date).all()
+    
+    return render_template('index.html', new_arrivals=new_arrivals)
 
 
 @app.route('/shop')
