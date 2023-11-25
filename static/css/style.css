@@ -15521,7 +15521,7 @@ input {
 
 .product-list-img-link {
     position: relative;
-    width: 100%;
+    flex: 1;
 }
 @media (min-width: 768px) {
     .product-list-img-link {
@@ -15543,7 +15543,7 @@ input {
 .product-list-content {
     margin-left: 0px;
     margin-top: 30px;
-    width: 100%;
+    flex: 2;
 }
 @media (min-width: 768px) {
     .product-list-content {
