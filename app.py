@@ -29,7 +29,8 @@ def shop():
 @app.route('/shop/<int:product_id>')
 def product_details(product_id):
     product = Product.query.get(product_id)
-    return render_template('product-details.html', product=product)
+    related_products = Product.query.filter(Product.id != product_id).all()  # TODO: improve this
+    return render_template('product-details.html', product=product, related_products=related_products)
      
     
 if __name__ == '__main__':

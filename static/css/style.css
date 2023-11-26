@@ -16850,6 +16850,10 @@ table {
     color: #81ca33;
 }
 
+.product-stock-in .ion-close-circled {
+    color: #fa5474;
+}
+
 .product-variable-quantity {
     margin-right: 20px;
 }
