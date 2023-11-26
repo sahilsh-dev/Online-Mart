@@ -25,6 +25,12 @@ def shop():
     products = Product.query.all()
     return render_template('shop.html', products=products)
 
+
+@app.route('/shop/<int:product_id>')
+def product_details(product_id):
+    product = Product.query.get(product_id)
+    return render_template('product-details.html', product=product)
      
+    
 if __name__ == '__main__':
     app.run(debug=True)
