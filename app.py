@@ -17,7 +17,7 @@ def home():
     new_arrivals = Product.query.filter(Product.created_at > threshold_date).all()
     best_sellers_collection = Collection.query.get('best sellers').products
     best_sellers = [Product.query.get(collection_item.product_id) for collection_item in best_sellers_collection]
-    return render_template('index.html', new_arrivals=new_arrivals, best_sellers=best_sellers)
+    return render_template('index.html', new_arrivals=new_arrivals, best_sellers=best_sellers, page='home')
 
 
 @app.route('/shop')

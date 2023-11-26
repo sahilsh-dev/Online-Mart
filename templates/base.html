@@ -473,7 +473,11 @@
 
     
     <!-- Start Footer Section -->
-    <footer class="footer-section footer-bg">
+    {% if page == 'home' %}
+        <footer class="footer-section footer-bg">
+    {% else %}
+        <footer class="footer-section footer-bg section-top-gap-100">
+    {% endif %}
         <div class="footer-wrapper">
             <!-- Start Footer Top -->
             <div class="footer-top">
