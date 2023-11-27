@@ -29,7 +29,7 @@
                             <!-- Start Header Logo -->
                             <div class="header-logo">
                                 <div class="logo">
-                                    <a href="index.html"><img src="{{ url_for('static', filename='images/logo/logo_black.png') }}" alt=""></a>
+                                    <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/logo/logo_black.png') }}" alt=""></a>
                                 </div>
                             </div>
                             <!-- End Header Logo -->
@@ -39,10 +39,10 @@
                                 <nav>
                                     <ul>
                                         <li class="has-dropdown">
-                                            <a class="active main-menu-link" href="index.html">Home</a>
+                                            <a class="active main-menu-link" href="{{ url_for('home') }}">Home</a>
                                         </li>
                                         <li class="has-dropdown has-megaitem">
-                                            <a href="product-details.html">Shop <i
+                                            <a href="{{ url_for('shop') }}">Shop <i
                                                     class="fa fa-angle-down"></i></a>
                                             <!-- Mega Menu -->
                                             <div class="mega-menu">
@@ -202,10 +202,10 @@
                 <div class="offcanvas-menu">
                     <ul>
                         <li>
-                            <a href="index.html"><span>Home</span></a>
+                            <a href="{{ url_for('home' )}}"><span>Home</span></a>
                         </li>
                         <li>
-                            <a href="#"><span>Shop</span></a>
+                            <a href="{{ url_for('shop') }}"><span>Shop</span></a>
                             <ul class="mobile-sub-menu">
                                 <li>
                                     <a href="#">Categories</a>

@@ -26,12 +26,19 @@ def shop():
     return render_template('shop.html', products=products)
 
 
-@app.route('/shop/<int:product_id>')
+@app.route('/shop/product/<int:product_id>')
 def product_details(product_id):
     product = Product.query.get(product_id)
     related_products = Product.query.filter(Product.id != product_id).all()  # TODO: improve this
     return render_template('product-details.html', product=product, related_products=related_products)
-     
-    
+
+
+@app.route('/shop/collection/<collection_name>')
+def shop_collection(collection_name):
+    collection = Collection.query.get(collection_name).pro
+    products = [Product.query.get(collection_item.product_id) for collection_item in collection]
+    return render_template('shop.html', products=products)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
