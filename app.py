@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request
-from models import db, Product, Collection
+from models import db, Product, Collection, Category
 from datetime import datetime, timedelta
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -35,10 +35,17 @@ def product_details(product_id):
 
 @app.route('/shop/collection/<collection_name>')
 def shop_collection(collection_name):
-    collection = Collection.query.get(collection_name).pro
+    collection = Collection.query.get(collection_name).products
     products = [Product.query.get(collection_item.product_id) for collection_item in collection]
     return render_template('shop.html', products=products)
 
+
+@app.route('/shop/category_names')
+def shop_category():
+    categories = request.args.getlist('category_names')
+    products = Product.query.join(Product.in_categories).filter(Category.category_name.in_(categories)).all()
+    return render_template('shop.html', products=products)
+ 
 
 if __name__ == '__main__':
     app.run(debug=True)

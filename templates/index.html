@@ -144,7 +144,7 @@
                                 <h4 class="title">Mini Rechargeable
                                     Table Lamps</h4>
                                 <h5 class="sub-title">We design your home</h5>
-                                <a href="product-details.html"
+                                <a href="{{ url_for('shop_collection', collection_name='mini rechargeable table lamps') }}"
                                     class="btn btn-lg btn-outline-golden icon-space-left"><span
                                         class="d-flex align-items-center">discover now <i
                                             class="ion-ios-arrow-thin-right"></i></span></a>
@@ -164,9 +164,10 @@
                                     </div>
                                     <div class="content">
                                         <h4 class="title">Kitchen <br>
-                                            utensils</h4>
-                                        <a href="product-details.html" class="link-text"><span>Shop
-                                                now</span></a>
+                                            Utensils</h4>
+                                        <a href="{{ url_for('shop_category', category_names=['kitchen utensil']) }}" class="link-text">
+                                            <span>Shop now</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +182,7 @@
                                     <div class="content">
                                         <h4 class="title">Sofas and <br>
                                             Armchairs</h4>
-                                        <a href="product-details.html" class="link-text"><span>Shop
+                                        <a href="{{ url_for('shop_category', category_names=['armchair']) }}" class="link-text"><span>Shop
                                                 now</span></a>
                                     </div>
                                 </div>
@@ -197,7 +198,7 @@
                                     <div class="content">
                                         <h4 class="title">Chair and<br>
                                             Bar stools</h4>
-                                        <a href="product-details.html" class="link-text"><span>Shop
+                                        <a href="{{ url_for('shop_category', category_names=['chair', 'bar stool']) }}}" class="link-text"><span>Shop
                                                 now</span></a>
                                     </div>
                                 </div>
@@ -213,7 +214,7 @@
                                     <div class="content">
                                         <h4 class="title">Interior <br>
                                             lighting</h4>
-                                        <a href="product-details.html" class="link-text"><span>Shop now</span></a>
+                                        <a href="{{ url_for('shop_category', category_names=['lighting']) }}" class="link-text"><span>Shop now</span></a>
                                     </div>
                                 </div>
                             </div>
