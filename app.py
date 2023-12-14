@@ -40,7 +40,7 @@ def shop_collection(collection_name):
     return render_template('shop.html', products=products)
 
 
-@app.route('/shop/category_names')
+@app.route('/shop/categories')
 def shop_category():
     categories = request.args.getlist('category_names')
     products = Product.query.join(Product.in_categories).filter(Category.category_name.in_(categories)).all()

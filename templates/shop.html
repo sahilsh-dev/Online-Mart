@@ -121,6 +121,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
+                                    {% if products %}
                                     <div class="tab-content tab-animate-zoom">
                                         <!-- Start Grid View Product -->
                                         <div class="tab-pane active show sort-layout-single" id="layout-3-grid">
@@ -234,6 +235,9 @@
                                             </div>
                                         </div> <!-- End List View Product -->
                                     </div>
+                                    {% else %}
+                                        <h1 class="product-not-found" data-aos="fade-up">No Products Added</h1>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

@@ -259,7 +259,7 @@
                                         <!-- Start Product Default Single Item -->
                                         <div class="product-default-single-item product-color--golden swiper-slide">
                                             <div class="image-box">
-                                                <a href="product-details.html" class="image-link">
+                                                <a href="{{ url_for('product_details', product_id=product.id) }}" class="image-link">
                                                     <img src="{{ url_for('static', filename='images/product/' + product.images[0].file_name) }}"
                                                         alt="">
                                                     <img src="{{ url_for('static', filename='images/product/' + product.images[1].file_name) }}"
@@ -285,7 +285,7 @@
                                             <div class="content">
                                                 <div class="content-left">
                                                     <h6 class="title">
-                                                        <a href="product-details.html">{{ product.product_name }}</a>
+                                                        <a href="{{ url_for('product_details', product_id=product.id) }}">{{ product.product_name }}</a>
                                                     </h6>
                                                     <ul class="review-star">
                                                         <li class="fill"><i class="ion-android-star"></i></li>
@@ -330,7 +330,7 @@
                             <h3 class="title">Modern Furniture
                                 Basic Collection</h3>
                             <h5 class="sub-title">We design your home more beautiful</h5>
-                            <a href="product-details.html"
+                            <a href="{{ url_for('shop_collection', collection_name='modern furniture basic collection') }}"
                                 class="btn btn-lg btn-outline-golden icon-space-left"><span
                                     class="d-flex align-items-center">discover now <i
                                         class="ion-ios-arrow-thin-right"></i></span></a>
@@ -374,7 +374,7 @@
                                         <!-- Start Product Default Single Item -->
                                         <div class="product-default-single-item product-color--golden swiper-slide">
                                             <div class="image-box">
-                                                <a href="product-details.html" class="image-link">
+                                                <a href="{{ url_for('product_details', product_id=product.id) }}" class="image-link">
                                                     <img src="{{ url_for('static', filename='images/product/' + product.images[0].file_name) }}"
                                                         alt="">
                                                     <img src="{{ url_for('static', filename='images/product/' + product.images[1].file_name) }}"
@@ -400,7 +400,7 @@
                                             <div class="content">
                                                 <div class="content-left">
                                                     <h6 class="title">
-                                                        <a href="product-details.html">{{ product.product_name }}</a>
+                                                        <a href="{{ url_for('product_details', product_id=product.id) }}">{{ product.product_name }}</a>
                                                     </h6>
                                                     <ul class="review-star">
                                                         <li class="fill"><i class="ion-android-star"></i></li>
@@ -439,7 +439,7 @@
                 <div class="image">
                     <img class="img-fluid" src="{{ url_for('static', filename='images/banner/banner-style-4-img-1.jpg') }}" alt="">
                 </div>
-                <a href="product-details.html" class="content">
+                <a href="{{ url_for('shop_category', category_names=['bar stool']) }}" class="content">
                     <div class="inner">
                         <h4 class="title">Bar Stool</h4>
                         <h6 class="sub-title">20 products</h6>
@@ -454,7 +454,7 @@
                 <div class="image">
                     <img class="img-fluid" src="{{ url_for('static', filename='images/banner/banner-style-4-img-2.jpg') }}" alt="">
                 </div>
-                <a href="product-details.html" class="content">
+                <a href="{{ url_for('shop_category', category_names=['armchair']) }}" class="content">
                     <div class="inner">
                         <h4 class="title">Armchairs</h4>
                         <h6 class="sub-title">20 products</h6>
@@ -469,7 +469,7 @@
                 <div class="image">
                     <img class="img-fluid" src="{{ url_for('static', filename='images/banner/banner-style-4-img-3.jpg') }}" alt="">
                 </div>
-                <a href="product-details.html" class="content">
+                <a href="{{ url_for('shop_category', category_names=['lighting']) }}" class="content">
                     <div class="inner">
                         <h4 class="title">lighting</h4>
                         <h6 class="sub-title">20 products</h6>
@@ -484,7 +484,7 @@
                 <div class="image">
                     <img class="img-fluid" src="{{ url_for('static', filename='images/banner/banner-style-4-img-4.jpg') }}" alt="">
                 </div>
-                <a href="product-details.html" class="content">
+                <a href="{{ url_for('shop_category', category_names=['chair']) }}" class="content">
                     <div class="inner">
                         <h4 class="title">Easy chairs</h4>
                         <h6 class="sub-title">20 products</h6>
@@ -526,7 +526,7 @@
                             </div>
                             <div class="instagram-link">
                                 <h5><a href="https://www.instagram.com/myfurniturecom/" target="_blank"
-                                        rel="noopener noreferrer">HONOTEMPLATE</a></h5>
+                                        rel="noopener noreferrer">CHECK OUT OUR INSTAGRAM</a></h5>
                             </div>
                         </div>
                     </div>

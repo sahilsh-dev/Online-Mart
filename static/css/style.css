@@ -19273,3 +19273,10 @@ Pages - Contact
     background-position: center 50%;
     background-repeat: no-repeat;
 }
+
+.product-not-found {
+    color: #a85d5d;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
