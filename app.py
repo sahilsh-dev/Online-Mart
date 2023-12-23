@@ -14,7 +14,7 @@ db.init_app(app)
 @app.route('/')
 def home():
     threshold_date = datetime.utcnow() - timedelta(days=100)  # Update this to 30 days
-    new_arrivals = Product.query.filter(Product.created_at > threshold_date).all()
+    new_arrivals = Product.query.filter(Product.created_at > threshold_date).all() 
     best_sellers_collection = Collection.query.get('best sellers').products
     best_sellers = [Product.query.get(collection_item.product_id) for collection_item in best_sellers_collection]
     print(new_arrivals)
@@ -35,7 +35,8 @@ def product_modal_data(product_id):
 @app.route('/shop')
 def shop():
     products = Product.query.all()
-    return render_template('shop.html', products=products)
+    categories = Category.query.all()
+    return render_template('shop.html', products=products, categories=categories)
 
 
 @app.route('/shop/product/<int:product_id>')
@@ -49,14 +50,16 @@ def product_details(product_id):
 def shop_collection(collection_name):
     collection = Collection.query.get(collection_name).products
     products = [Product.query.get(collection_item.product_id) for collection_item in collection]
-    return render_template('shop.html', products=products)
+    categories = Category.query.all()
+    return render_template('shop.html', products=products, categories=categories)
 
 
 @app.route('/shop/categories')
 def shop_category():
     categories = request.args.getlist('category_names')
     products = Product.query.join(Product.in_categories).filter(Category.category_name.in_(categories)).all()
-    return render_template('shop.html', products=products)
+    categories = Category.query.all()
+    return render_template('shop.html', products=products, categories=categories)
  
 
 if __name__ == '__main__':

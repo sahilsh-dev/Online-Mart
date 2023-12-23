@@ -37,14 +37,9 @@
                             <h6 class="sidebar-title">CATEGORIES</h6>
                             <div class="sidebar-content">
                                 <ul class="sidebar-menu">
-                                    <li><a href="#">Football</a></li>
-                                    <li><a href="#"> Men's</a></li>
-                                    <li><a href="#"> Portable Audio</a></li>
-                                    <li><a href="#"> Smart Watches</a></li>
-                                    <li><a href="#">Tennis</a></li>
-                                    <li><a href="#"> Uncategorized</a></li>
-                                    <li><a href="#"> Video Games</a></li>
-                                    <li><a href="#">Women's</a></li>
+                                    {% for category in categories %}
+                                        <li><a href="{{ url_for('shop_category', category_name=category.category_name) }}">{{ category.category_name.title() }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div> <!-- End Single Sidebar Widget -->
@@ -64,7 +59,7 @@
                        <!-- Start Single Sidebar Widget -->
                         <div class="sidebar-single-widget">
                             <div class="sidebar-content">
-                                <a href="product-details.html" class="sidebar-banner img-hover-zoom">
+                                <a href="{{ url_for('shop_collection', collection_name='modern furniture basic collection') }}" class="sidebar-banner img-hover-zoom">
                                     <img class="img-fluid" src="{{ url_for('static', filename='images/banner/side-banner.jpg') }}" alt="">
                                 </a>
                             </div>
@@ -132,7 +127,7 @@
                                                         <div class="product-default-single-item product-color--golden"
                                                             data-aos="fade-up" data-aos-delay="200">
                                                             <div class="image-box">
-                                                                <a href="product-details.html" class="image-link">
+                                                                <a href="{{ url_for('product_details', product_id=product.id) }}" class="image-link">
                                                                     <img src="{{ url_for('static', filename='images/product/' + product.images[0].file_name) }}"
                                                                         alt="">
                                                                     <img src="{{ url_for('static', filename='images/product/' + product.images[1].file_name) }}"
@@ -140,11 +135,11 @@
                                                                 </a>
                                                                 <div class="action-link">
                                                                     <div class="action-link-left">
-                                                                        <a href="#" data-bs-toggle="modal"
+                                                                        <a href="#" data-bs-toggle="modal" 
                                                                             data-bs-target="#modalAddcart">Add to Cart</a>
                                                                     </div>
                                                                     <div class="action-link-right">
-                                                                        <a href="#" data-bs-toggle="modal"
+                                                                        <a href="#" data-bs-toggle="modal" data-bs-product-id="{{ product.id }}"
                                                                             data-bs-target="#modalQuickview"><i
                                                                                 class="icon-magnifier"></i></a>
                                                                         <a href="wishlist.html"><i
@@ -175,7 +170,6 @@
                                                                 <div class="content-right">
                                                                     <span class="price">₹{{ product.price }}</span>
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                         <!-- End Product Default Single Item -->
@@ -191,7 +185,7 @@
                                                     <div class="col-12">
                                                         <!-- Start Product Defautlt Single -->
                                                         <div class="product-list-single product-color--golden">
-                                                            <a href="product-details.html" class="product-list-img-link">
+                                                            <a href="{{ url_for('product_details', product_id=product.id) }}" class="product-list-img-link">
                                                                 <img class="img-fluid"
                                                                     src="{{ url_for('static', filename='images/product/' + product.images[0].file_name) }}" 
                                                                 alt="">
@@ -213,11 +207,11 @@
                                                                 <span class="product-list-price">₹{{ product.price }}</span>
                                                                 <p>{{ product.description }}</p>
                                                                 <div class="product-action-icon-link-list">
-                                                                    <a href="#" data-bs-toggle="modal"
+                                                                    <a href="#" data-bs-toggle="modal" 
                                                                         data-bs-target="#modalAddcart"
                                                                         class="btn btn-lg btn-black-default-hover">Add to
                                                                         cart</a>
-                                                                    <a href="#" data-bs-toggle="modal"
+                                                                    <a href="#" data-bs-toggle="modal" data-bs-product-id="{{ product.id }}"
                                                                         data-bs-target="#modalQuickview"
                                                                         class="btn btn-lg btn-black-default-hover"><i
                                                                             class="icon-magnifier"></i></a>
