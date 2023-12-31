@@ -18999,6 +18999,17 @@ Pages - Contact
     font-size: 27px;
 }
 
+#search-items {
+    position: absolute;
+    left: 50%;
+    top: 50;
+    transform: translateX(-50%);
+}
+
+#search-items h1 {
+    color: white;
+}
+
 /*****************************
 * Layout - Modal
 *****************************/

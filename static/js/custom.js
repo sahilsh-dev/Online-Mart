@@ -1,9 +1,10 @@
+// Quick View Modal
+
 const quickviewModal = document.getElementById('modalQuickview');
 const largeImageContainer = document.querySelector('.product-large-image .swiper-wrapper');
 const thumbnailImageContainer = document.querySelector('.product-image-thumb .swiper-wrapper');
 
 function replaceImages(imagePaths) {
-    // Hide all existing images
     const allImages = document.querySelectorAll('.product-image-large-image img, .product-image-thumb-single img');
     allImages.forEach(image => image.style.display = 'none');
 

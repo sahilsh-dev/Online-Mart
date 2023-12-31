@@ -38,7 +38,7 @@
                             <div class="sidebar-content">
                                 <ul class="sidebar-menu">
                                     {% for category in categories %}
-                                        <li><a href="{{ url_for('shop_category', category_name=category.category_name) }}">{{ category.category_name.title() }}</a></li>
+                                        <li><a href="{{ url_for('shop_category', category_names=[category.category_name]) }}">{{ category.category_name.title() }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </div>

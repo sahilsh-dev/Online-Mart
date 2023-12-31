@@ -39,6 +39,16 @@ def shop():
     return render_template('shop.html', products=products, categories=categories)
 
 
+@app.route('shop/search')
+def shop_search():
+    search_term = request.args.get('search_term')
+    products = Product.query.filter(
+        (Product.name.ilike(f'%{search_term}%')) |
+        (Product.description.ilike(f'%{search_term}%'))
+    ).limit(5).all()
+    return jsonify([{'title': product.name, 'category': product.category} for product in products])
+
+
 @app.route('/shop/product/<int:product_id>')
 def product_details(product_id):
     product = Product.query.get(product_id)
@@ -58,8 +68,8 @@ def shop_collection(collection_name):
 def shop_category():
     categories = request.args.getlist('category_names')
     products = Product.query.join(Product.in_categories).filter(Category.category_name.in_(categories)).all()
-    categories = Category.query.all()
-    return render_template('shop.html', products=products, categories=categories)
+    categories_list = Category.query.all()
+    return render_template('shop.html', products=products, categories=categories_list)
  
 
 if __name__ == '__main__':
