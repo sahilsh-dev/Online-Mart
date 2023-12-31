@@ -17,7 +17,6 @@ def home():
     new_arrivals = Product.query.filter(Product.created_at > threshold_date).all() 
     best_sellers_collection = Collection.query.get('best sellers').products
     best_sellers = [Product.query.get(collection_item.product_id) for collection_item in best_sellers_collection]
-    print(new_arrivals)
     return render_template('index.html', new_arrivals=new_arrivals, best_sellers=best_sellers, page='home')
 
 
@@ -39,14 +38,20 @@ def shop():
     return render_template('shop.html', products=products, categories=categories)
 
 
-@app.route('shop/search')
+@app.route('/shop/search')
 def shop_search():
     search_term = request.args.get('search_term')
+    if not search_term:
+        return jsonify([])
     products = Product.query.filter(
-        (Product.name.ilike(f'%{search_term}%')) |
+        (Product.product_name.ilike(f'%{search_term}%')) |
         (Product.description.ilike(f'%{search_term}%'))
     ).limit(5).all()
-    return jsonify([{'title': product.name, 'category': product.category} for product in products])
+    
+    return jsonify([{
+        'title': product.product_name, 
+        'url': url_for('product_details', product_id=product.id)} for product in products
+    ])
 
 
 @app.route('/shop/product/<int:product_id>')

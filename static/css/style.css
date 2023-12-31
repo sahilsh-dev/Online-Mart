@@ -19002,12 +19002,18 @@ Pages - Contact
 #search-items {
     position: absolute;
     left: 50%;
-    top: 50;
+    top: 60%;
     transform: translateX(-50%);
+    text-align: center;
+    width: 20rem;
 }
 
-#search-items h1 {
+#search-items h2 {
     color: white;
+    background-color: #b19361;
+    padding: 5px 10px;
+    margin: 20px auto;
+    border-radius: 5px;
 }
 
 /*****************************
