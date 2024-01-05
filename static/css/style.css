@@ -18717,6 +18717,10 @@ Pages - Contact
     display: none;
 }
 
+.offcanvas-menu-expand{
+    cursor: pointer;
+}
+
 .offcanvas-menu-expand::after {
     content: "";
     position: absolute;

@@ -8,7 +8,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = "any random string"
 db.init_app(app)
+
+with app.app_context():
+    categories_list = Category.query.all()
 
 
 @app.route('/')
@@ -34,8 +38,7 @@ def product_modal_data(product_id):
 @app.route('/shop')
 def shop():
     products = Product.query.all()
-    categories = Category.query.all()
-    return render_template('shop.html', products=products, categories=categories)
+    return render_template('shop.html', products=products, categories=categories_list)
 
 
 @app.route('/shop/search')
@@ -65,15 +68,13 @@ def product_details(product_id):
 def shop_collection(collection_name):
     collection = Collection.query.get(collection_name).products
     products = [Product.query.get(collection_item.product_id) for collection_item in collection]
-    categories = Category.query.all()
-    return render_template('shop.html', products=products, categories=categories)
+    return render_template('shop.html', products=products, categories=categories_list)
 
 
 @app.route('/shop/categories')
 def shop_category():
     categories = request.args.getlist('category_names')
     products = Product.query.join(Product.in_categories).filter(Category.category_name.in_(categories)).all()
-    categories_list = Category.query.all()
     return render_template('shop.html', products=products, categories=categories_list)
  
 

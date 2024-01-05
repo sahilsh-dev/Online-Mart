@@ -68,7 +68,7 @@ const updateResults = () => {
                 searchItemsContainer[i].style.display = 'block';
             })
         })
-        .catch(error => console.error('Error fetching search results:', error));
+        .catch(error => console.warn('Error fetching search results:', error));
 }
 
 const updateSearchResults = debounce(() => updateResults())
