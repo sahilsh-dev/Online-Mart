@@ -24,6 +24,11 @@ def home():
     return render_template('index.html', new_arrivals=new_arrivals, best_sellers=best_sellers, page='home')
 
 
+@app.route('/account')
+def account():
+    return render_template('account.html')
+
+
 @app.route('/product/<int:product_id>')
 def product_modal_data(product_id):
     product = Product.query.get(product_id)
