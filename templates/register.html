@@ -2,18 +2,18 @@
 {% from 'macros.html' import render_breadcrumb %}
 
 {% block content %}    
-    {{ render_breadcrumb(section_heading='Login') }}
+    {{ render_breadcrumb(section_heading='Register') }}
 
     <!-- ...:::: Start Customer Login Section :::... -->
     <div class="customer-login">
         <div class="container">
             <div class="row">
-                <!--login area start-->
+                <!--register area start-->
                 <div class="col-lg-6 col-md-6">
-                    <div class="account_form" data-aos="fade-up" data-aos-delay="0">
-                        <form action="#" method="POST">
+                    <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
+                        <form action="#">
                             <div class="default-form-box">
-                                <label>Username or email <span>*</span></label>
+                                <label>Email address <span>*</span></label>
                                 <input type="text">
                             </div>
                             <div class="default-form-box">
@@ -21,17 +21,12 @@
                                 <input type="password">
                             </div>
                             <div class="login_submit">
-                                <button class="btn btn-md btn-black-default-hover mb-4" type="submit">login</button>
-                                <label class="checkbox-default mb-4" for="offer">
-                                    <input type="checkbox" id="offer">
-                                    <span>Remember me</span>
-                                </label>
-                                <a href="#">Lost your password?</a>
+                                <button class="btn btn-md btn-black-default-hover" type="submit">Register</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <!--login area end-->
+                <!--register area end-->
             </div>
         </div>
     </div> <!-- ...:::: End Customer Login Section :::... -->

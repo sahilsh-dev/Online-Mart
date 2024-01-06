@@ -19326,3 +19326,7 @@ Pages - Contact
 .mobile-right-side .profile-img {
     margin-right: 15px;
 }
+
+.customer-login .row {
+    justify-content: center;
+}

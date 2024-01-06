@@ -3,7 +3,6 @@ from flask import Flask, render_template, redirect, url_for, request, jsonify
 from models import db, Product, Collection, Category
 from datetime import datetime, timedelta
 from hashlib import md5
-from flask_login import UserMixin
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -31,10 +30,17 @@ def home():
     new_arrivals = Product.query.filter(Product.created_at > threshold_date).all() 
     best_sellers_collection = Collection.query.get('best sellers').products
     best_sellers = [Product.query.get(collection_item.product_id) for collection_item in best_sellers_collection]
-    return render_template('index.html', 
-                           new_arrivals=new_arrivals, 
-                           best_sellers=best_sellers, 
-                           page='home')
+    return render_template(
+        'index.html', 
+        new_arrivals=new_arrivals, 
+        best_sellers=best_sellers, 
+        page='home'
+    )
+
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 
 @app.route('/account')
