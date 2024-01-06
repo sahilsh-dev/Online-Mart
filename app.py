@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for, request, jsonify
 from models import db, Product, Collection, Category
 from datetime import datetime, timedelta
 from hashlib import md5
+from flask_login import UserMixin
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 

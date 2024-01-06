@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
+
 db = SQLAlchemy()
 
 
@@ -56,3 +58,25 @@ class Category(db.Model):
     
     def __repr__(self):
         return f'<Category {self.category_name}>' 
+
+
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), nullable=False)
+    password_hash = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    gender = db.Column(db.String(10))
+    first_name = db.Column(db.String(100))
+    last_name = db.Column(db.String(100))
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    address = db.relationship('UserAddress', backref='user', lazy=True)
+    
+
+class UserAddress(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    street = db.Column(db.String(100), nullable=False)
+    city = db.Column(db.String(100), nullable=False)
+    zip_code = db.Column(db.String(10), nullable=False)
+    country = db.Column(db.String(100), nullable=False)
+

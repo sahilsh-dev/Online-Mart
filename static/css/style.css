@@ -19322,3 +19322,7 @@ Pages - Contact
     border-radius: 40%;
     margin-bottom: 4px;
 }
+
+.mobile-right-side .profile-img {
+    margin-right: 15px;
+}
