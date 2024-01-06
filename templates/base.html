@@ -112,7 +112,12 @@
                             <!-- Start Header Action Link -->
                             <ul class="header-action-link action-color--black action-hover-color--golden">
                                 <li>
-                                    <a href="#offcanvas-wishlish" class="offcanvas-toggle">
+                                    <a href="#search">
+                                        <i class="icon-magnifier"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#offcanvas-wishlist" class="offcanvas-toggle">
                                         <i class="icon-heart"></i>
                                         <span class="item-count">3</span>
                                     </a>
@@ -124,8 +129,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#search">
-                                        <i class="icon-magnifier"></i>
+                                    <a href="{{ url_for('account') }}" class="profile-img">
+                                        <img src="{{ gravatar_url('admin@gmail.com') }}" alt="">
                                     </a>
                                 </li>
                                 <li>

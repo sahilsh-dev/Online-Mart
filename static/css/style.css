@@ -18213,6 +18213,12 @@ Pages - Contact
     align-items: center;
 }
 
+.header-action-link .icon-magnifier {
+    display: inline-block;
+    width: 25px;
+    padding-top: 10px;
+}
+
 .header-action-link li {
     margin-right: 20px;
 }
@@ -19308,4 +19314,11 @@ Pages - Contact
 
 #slider-range {
     height: 5px;
+} 
+
+.profile-img img{
+    width: 30px;
+    height: 30px;
+    border-radius: 40%;
+    margin-bottom: 4px;
 }
