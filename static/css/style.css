@@ -19330,3 +19330,9 @@ Pages - Contact
 .customer-login .row {
     justify-content: center;
 }
+
+.customer-login .btn input{
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+}

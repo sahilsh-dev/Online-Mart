@@ -11,17 +11,22 @@
                 <!--register area start-->
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
-                        <form action="#">
+                        <form action="{{ url_for('register') }}" method="post">
+                            {{ form.csrf_token }}
                             <div class="default-form-box">
-                                <label>Email address <span>*</span></label>
-                                <input type="text">
+                                {{ form.username.label }}
+                                {{ form.username }}
                             </div>
                             <div class="default-form-box">
-                                <label>Passwords <span>*</span></label>
-                                <input type="password">
+                                {{ form.email.label }}
+                                {{ form.email }}
                             </div>
-                            <div class="login_submit">
-                                <button class="btn btn-md btn-black-default-hover" type="submit">Register</button>
+                            <div class="default-form-box">
+                                {{ form.password.label }}
+                                {{ form.password }}
+                            </div>
+                            <div class="register_submit">
+                                <button class="btn btn-md btn-black-default-hover">{{ form.submit }}</button>
                             </div>
                         </form>
                     </div>

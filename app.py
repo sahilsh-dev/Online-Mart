@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for, request, jsonify
 from models import db, Product, Collection, Category
 from datetime import datetime, timedelta
 from hashlib import md5
+from forms import RegisterForm, LoginForm
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -38,9 +39,12 @@ def home():
     )
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+    form = RegisterForm()
+    if form.validate_on_submit():
+        return redirect(url_for('home'))
+    return render_template('register.html', form=form)
 
 
 @app.route('/account')
