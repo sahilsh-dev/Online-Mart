@@ -1,9 +1,10 @@
 import os
-from flask import Flask, render_template, redirect, url_for, request, jsonify
-from models import db, Product, Collection, Category
+from flask import Flask, render_template, redirect, url_for, request, jsonify, flash
+from models import db, Product, Collection, Category, User
 from datetime import datetime, timedelta
 from hashlib import md5
 from forms import RegisterForm, LoginForm
+from werkzeug.security import generate_password_hash, check_password_hash
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -43,6 +44,25 @@ def home():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
+        if User.query.filter_by(username=form.username.data).first() or User.query.filter_by(email=form.email.data).first(): 
+            flash('Username or email already exists')
+            return redirect(url_for('register'))
+        if not form.email.data.endswith('.com'):
+            flash('Please enter a valid email address')
+            return redirect(url_for('register'))
+        
+        secure_password = generate_password_hash(
+            form.password.data, 
+            method='pbkdf2:sha256', 
+            salt_length=8
+        )
+        new_user = User(
+            username=form.username.data,
+            password_hash = secure_password,
+            email = form.email.data,
+        )
+        db.session.add(new_user)
+        db.session.commit()
         return redirect(url_for('home'))
     return render_template('register.html', form=form)
 

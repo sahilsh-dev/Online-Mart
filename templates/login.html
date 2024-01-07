@@ -11,7 +11,13 @@
                 <!--login area start-->
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form" data-aos="fade-up" data-aos-delay="0">
-                        <form action="#" method="POST">
+                        <form action="{{ url_for('login') }}" method="POST">
+                            {{ form.csrf_token }}
+                            {% with messages = get_flashed_messages() %}
+                                {% for message in messages %}
+                                    <p class="flash">{{ message }}</p>
+                                {% endfor %}
+                            {% endwith %} 
                             <div class="default-form-box">
                                 <label>Username or email <span>*</span></label>
                                 <input type="text">

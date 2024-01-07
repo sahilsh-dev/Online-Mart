@@ -19336,3 +19336,7 @@ Pages - Contact
     color: white;
     text-transform: uppercase;
 }
+
+.flash {
+    color: red;
+}

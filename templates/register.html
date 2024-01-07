@@ -11,8 +11,13 @@
                 <!--register area start-->
                 <div class="col-lg-6 col-md-6">
                     <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
-                        <form action="{{ url_for('register') }}" method="post">
+                        <form action="{{ url_for('register') }}" method="POST">
                             {{ form.csrf_token }}
+                            {% with messages = get_flashed_messages() %}
+                                {% for message in messages %}
+                                    <p class="flash">{{ message }}</p>
+                                {% endfor %}
+                            {% endwith %}
                             <div class="default-form-box">
                                 {{ form.username.label }}
                                 {{ form.username }}
