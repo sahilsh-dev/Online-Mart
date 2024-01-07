@@ -44,13 +44,17 @@ def home():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        if User.query.filter_by(username=form.username.data).first() or User.query.filter_by(email=form.email.data).first(): 
-            flash('Username or email already exists')
-            return redirect(url_for('register'))
-        if not form.email.data.endswith('.com'):
+        email = form.email.data
+        if not (email.endswith('.com') or email.endswith('.in')):
             flash('Please enter a valid email address')
             return redirect(url_for('register'))
-        
+        if User.query.filter_by(username=form.username.data).first():
+            flash("This username already exists, kindly choose a new username")
+            return redirect(url_for('register'))
+        if User.query.filter_by(email=email).first(): 
+            flash("You've already signed up with that email, Log in instead")
+            return redirect(url_for('login')) 
+
         secure_password = generate_password_hash(
             form.password.data, 
             method='pbkdf2:sha256', 
@@ -59,12 +63,20 @@ def register():
         new_user = User(
             username=form.username.data,
             password_hash = secure_password,
-            email = form.email.data,
+            email = email,
         )
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('home'))
     return render_template('register.html', form=form)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect(url_for('home'))
+    return render_template('login.html', form=form)
 
 
 @app.route('/account')

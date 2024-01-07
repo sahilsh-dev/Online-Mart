@@ -19,15 +19,15 @@
                                 {% endfor %}
                             {% endwith %} 
                             <div class="default-form-box">
-                                <label>Username or email <span>*</span></label>
-                                <input type="text">
+                                {{ form.username_or_email.label }}
+                                {{ form.username_or_email }}
                             </div>
                             <div class="default-form-box">
-                                <label>Passwords <span>*</span></label>
-                                <input type="password">
+                                {{ form.password.label }}
+                                {{ form.password }}
                             </div>
                             <div class="login_submit">
-                                <button class="btn btn-md btn-black-default-hover mb-4" type="submit">login</button>
+                                <button class="btn btn-md btn-black-default-hover mb-4">{{ form.submit }}</button>
                                 <label class="checkbox-default mb-4" for="offer">
                                     <input type="checkbox" id="offer">
                                     <span>Remember me</span>
