@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from hashlib import md5
 from forms import RegisterForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, login_user, logout_user, current_user
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -12,11 +13,14 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "any random string"
+login_manager = LoginManager(app)
 db.init_app(app)
 
 
-def gravatar_url(email, size=50, rating='g', default='retro', force_default=False):
+def gravatar_url(email, size=50, rating='g', default='mp', force_default=False):
     hash_value = md5(email.lower().encode('utf-8')).hexdigest()
+    if current_user.is_authenticated:
+        default = 'retro'
     return f"https://www.gravatar.com/avatar/{hash_value}?s={size}&d={default}&r={rating}&f={force_default}"
 
 
@@ -24,6 +28,11 @@ def gravatar_url(email, size=50, rating='g', default='retro', force_default=Fals
 def inject_globals():
     categories = Category.query.all()
     return dict(categories=categories, gravatar_url=gravatar_url)
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 @app.route('/')
@@ -67,6 +76,7 @@ def register():
         )
         db.session.add(new_user)
         db.session.commit()
+        login_user(new_user)
         return redirect(url_for('home'))
     return render_template('register.html', form=form)
 
@@ -77,6 +87,12 @@ def login():
     if form.validate_on_submit():
         return redirect(url_for('home'))
     return render_template('login.html', form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 
 @app.route('/account')
