@@ -29,7 +29,7 @@
                             <div class="login_submit">
                                 <button class="btn btn-md btn-black-default-hover mb-4">{{ form.submit }}</button>
                                 <label class="checkbox-default mb-4" for="offer">
-                                    <input type="checkbox" id="offer">
+                                    {{ form.remember_me(id="offer") }}
                                     <span>Remember me</span>
                                 </label>
                                 <a href="#">Lost your password?</a>

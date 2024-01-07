@@ -19341,3 +19341,7 @@ Pages - Contact
     color: red;
     margin: 3% 0;
 }
+
+.login_submit .checkbox-default span{
+    margin-top: 3px;
+}

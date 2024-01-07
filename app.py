@@ -85,7 +85,21 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        return redirect(url_for('home'))
+        username_or_email = form.username_or_email.data
+        if username_or_email.endswith('.com') or username_or_email.endswith('.in'):
+            saved_user = User.query.filter_by(email=username_or_email).first()
+        else:
+            saved_user = User.query.filter_by(username=username_or_email).first()
+        
+        entered_password = form.password.data
+        remember_me = form.remember_me.data
+        if not saved_user:
+            flash("That email does not exist! Please try again")
+        elif check_password_hash(saved_user.password_hash, entered_password):
+            login_user(saved_user, remember=remember_me)
+            return redirect(url_for('home'))
+        else:
+            flash("The password is incorrect! Please try again") 
     return render_template('login.html', form=form)
 
 
