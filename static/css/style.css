@@ -19345,3 +19345,8 @@ Pages - Contact
 .login_submit .checkbox-default span{
     margin-top: 3px;
 }
+
+.register-link {
+    margin-top: 10px;
+    margin-left: 10px;
+}
