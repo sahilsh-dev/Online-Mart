@@ -19350,3 +19350,9 @@ Pages - Contact
     margin-top: 10px;
     margin-left: 10px;
 }
+
+.account-dashboard .warnings {
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 3%;
+}

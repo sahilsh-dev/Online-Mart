@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request, jsonify, flash
-from models import db, Product, Collection, Category, User
+from models import db, Product, Collection, Category, User, Order
 from datetime import datetime, timedelta
 from hashlib import md5
 from forms import RegisterForm, LoginForm
@@ -12,7 +12,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = "any random string"
+app.config['SECRET_KEY'] = 'any random string'
 login_manager = LoginManager(app)
 db.init_app(app)
 
@@ -115,7 +115,9 @@ def logout():
 def account():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
-    return render_template('account.html')
+    orders = current_user.orders
+    order_prices = [sum([item.price for item in order.order_items]) for order in orders]
+    return render_template('account.html', orders=orders, order_prices=order_prices)
 
 
 @app.route('/product/<int:product_id>')

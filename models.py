@@ -25,7 +25,8 @@ class User(UserMixin, db.Model):
     
     address = db.relationship('UserAddress', backref='user')
     cart = db.relationship('Cart', backref='user')   
-
+    orders = db.relationship('Order', backref='user')
+    
 
 class UserAddress(db.Model):
     id = db.Column(db.Integer, primary_key=True)

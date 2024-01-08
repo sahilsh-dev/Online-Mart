@@ -31,6 +31,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content dashboard_content" data-aos="fade-up" data-aos-delay="200">
                         <div class="tab-pane fade show active" id="dashboard">
+                            <h4 class="warnings">Complete your profile to view</h4>
                             <h4>Dashboard </h4>
                             <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent
                                     orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a
@@ -50,20 +51,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>May 10, 2018</td>
-                                            <td><span class="success">Completed</span></td>
-                                            <td>$25.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>May 10, 2018</td>
-                                            <td>Processing</td>
-                                            <td>$17.00 for 1 item </td>
-                                            <td><a href="cart.html" class="view">view</a></td>
-                                        </tr>
+                                        {% for order in orders %}
+                                            <tr>
+                                                <td>{{ loop.index }}</td>
+                                                <td>{{ order.created_at.strftime('%d %b, %Y') }}</td>
+                                                <td><span class="success">{{ order.status.value }}</span></td>
+                                                <td>₹{{ order_prices[loop.index0] }} for {{ order.order_items|length }} item </td>
+                                                <td><a href="cart.html" class="view">view</a></td>  <!-- TODO: Show order items in cart-->
+                                            </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
