@@ -19352,6 +19352,11 @@ Pages - Contact
     margin-left: 10px;
 }
 
+.account-dashboard h3 {
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
 .account-dashboard .warnings {
     color: red;
     margin-top: 10px;
@@ -19368,5 +19373,5 @@ Pages - Contact
 }
 
 ::placeholder {
-    opacity: 0.70;
+    opacity: 0.60;
 }

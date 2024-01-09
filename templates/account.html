@@ -31,14 +31,13 @@
                     <!-- Tab panes -->
                     <div class="tab-content dashboard_content" data-aos="fade-up" data-aos-delay="200">
                         <div class="tab-pane fade show active" id="dashboard">
-                            <h4 class="warnings">Complete your profile to view</h4>
-                            <h4>Dashboard </h4>
+                            <h3>Dashboard </h3>
                             <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent
                                     orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a
                                     href="#">Edit your password and account details.</a></p>
                         </div>
                         <div class="tab-pane fade" id="orders">
-                            <h4>Orders</h4>
+                            <h3>Orders</h3>
                             <div class="table_page table-responsive">
                                 <table>
                                     <thead>
@@ -72,7 +71,7 @@
                         </div>
                         <div class="tab-pane" id="address">
                             <p>The following addresses will be used on the checkout page by default.</p>
-                            <h4 class="billing-address">Billing address</h5>
+                            <h3 class="billing-address">Billing address</h3>
                             <a href="#" class="view">Edit</a>
                             {% if address %}
                                 {% if current_user.first_name %}
@@ -91,25 +90,25 @@
                                 <h4 class="warnings">Address not set</h4>
                             {% endif %}
                             <form action="{{ url_for('account') }}" method="POST" id="address-form">
-                                {{ form.csrf_token }}
+                                {{ address_form.csrf_token }}
                                 <div class="default-form-box mb-20">
-                                    {{ form.street.label }}
-                                    {{ form.street(placeholder=address.street) }}
+                                    {{ address_form.street.label }}
+                                    {{ address_form.street(placeholder=address.street) }}
                                 </div>
                                 <div class="default-form-box mb-20">
-                                    {{ form.city.label }}
-                                    {{ form.city(placeholder=address.city) }}
+                                    {{ address_form.city.label }}
+                                    {{ address_form.city(placeholder=address.city) }}
                                 </div>
                                 <div class="default-form-box mb-20">
-                                    {{ form.country.label }}
-                                    {{ form.country(placeholder=address.country) }} 
+                                    {{ address_form.country.label }}
+                                    {{ address_form.country(placeholder=address.country) }} 
                                 </div>
                                 <div class="default-form-box mb-20">
-                                    {{ form.zip_code.label }}
-                                    {{ form.zip_code(placeholder=address.zip_code) }}
+                                    {{ address_form.zip_code.label }}
+                                    {{ address_form.zip_code(placeholder=address.zip_code) }}
                                 </div>
                                 <div class="save_button mt-3">
-                                    <button>{{ form.submit(class="btn btn-md btn-black-default-hover") }}</button>
+                                    <button>{{ address_form.submit(class="btn btn-md btn-black-default-hover") }}</button>
                                 </div>
                             </form>
                         </div>
@@ -118,46 +117,45 @@
                             <div class="login">
                                 <div class="login_form_container">
                                     <div class="account_login_form">
-                                        <form action="#">
-                                            <p>Already have an account? <a href="#">Log in instead!</a></p>
+                                        <form action="{{ url_for('account') }}" method="POST">
+                                            {{ account_form.csrf_token }}
                                             <div class="input-radio">
-                                                <span class="custom-radio"><input type="radio" value="1"
-                                                        name="id_gender"> Mr.</span>
-                                                <span class="custom-radio"><input type="radio" value="1"
-                                                        name="id_gender"> Mrs.</span>
+                                                {% for field in account_form.gender %}
+                                                    <span class="custom-radio">{{ field }} {{ field.label }}</span>
+                                                {% endfor %}
                                             </div> <br>
                                             <div class="default-form-box mb-20">
-                                                <label>First Name</label>
-                                                <input type="text" name="first-name">
+                                                {{ account_form.first_name.label }}
+                                                {{ account_form.first_name }}
                                             </div>
                                             <div class="default-form-box mb-20">
-                                                <label>Last Name</label>
-                                                <input type="text" name="last-name">
+                                                {{ account_form.last_name.label }}
+                                                {{ account_form.last_name }}
                                             </div>
                                             <div class="default-form-box mb-20">
-                                                <label>Email</label>
-                                                <input type="text" name="email-name">
+                                                {{ account_form.phone.label }}
+                                                {{ account_form.phone }}
                                             </div>
                                             <div class="default-form-box mb-20">
-                                                <label>Password</label>
-                                                <input type="password" name="user-password">
+                                                {{ account_form.password.label }}
+                                                {{ account_form.password }}
                                             </div>
                                             <div class="default-form-box mb-20">
-                                                <label>Birthdate</label>
-                                                <input type="date" name="birthday">
+                                                {{ account_form.birth_date.label }}
+                                                {{ account_form.birth_date }}
                                             </div>
                                             <span class="example">
                                                 (E.g.: 05/31/1970)
                                             </span>
                                             <br>
                                             <label class="checkbox-default" for="offer">
-                                                <input type="checkbox" id="offer">
-                                                <span>Receive offers from our partners</span>
+                                                {{ account_form.receive_offers }}
+                                                <span>{{ account_form.receive_offers.label }}</span>
                                             </label>
                                             <br>
                                             <label class="checkbox-default checkbox-default-more-text" for="newsletter">
-                                                <input type="checkbox" id="newsletter">
-                                                <span>Sign up for our newsletter<br><em>You may unsubscribe at any
+                                                {{ account_form.signup_newsletter }}
+                                                <span>{{ account_form.signup_newsletter.label }}<br><em>You may unsubscribe at any
                                                         moment. For that purpose, please find our contact info in the
                                                         legal notice.</em></span>
                                             </label>
