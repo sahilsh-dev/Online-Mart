@@ -22,7 +22,8 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(100))
     birth_date = db.Column(db.Date)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
-    
+    phone = db.Column(db.Integer)
+     
     address = db.relationship('UserAddress', backref='user')
     cart = db.relationship('Cart', backref='user')   
     orders = db.relationship('Order', backref='user')

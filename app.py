@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request, jsonify, flash
-from models import db, Product, Collection, Category, User, Order
+from models import db, Product, Collection, Category, User, UserAddress
 from datetime import datetime, timedelta
 from hashlib import md5
 from forms import RegisterForm, LoginForm
@@ -117,7 +117,8 @@ def account():
         return redirect(url_for('login'))
     orders = current_user.orders
     order_prices = [sum([item.price for item in order.order_items]) for order in orders]
-    return render_template('account.html', orders=orders, order_prices=order_prices)
+    user_address = UserAddress.query.filter_by(user_id=current_user.id).first()
+    return render_template('account.html', orders=orders, order_prices=order_prices, address=user_address)
 
 
 @app.route('/product/<int:product_id>')

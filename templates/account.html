@@ -51,7 +51,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for order in orders %}
+                                        {% if orders|length == 0 %}
+                                            <tr>
+                                                <td colspan="5" class="text-center">No orders yet</td>
+                                            </tr>
+                                        {% else %}
+                                            {% for order in orders %}
                                             <tr>
                                                 <td>{{ loop.index }}</td>
                                                 <td>{{ order.created_at.strftime('%d %b, %Y') }}</td>
@@ -59,7 +64,8 @@
                                                 <td>₹{{ order_prices[loop.index0] }} for {{ order.order_items|length }} item </td>
                                                 <td><a href="cart.html" class="view">view</a></td>  <!-- TODO: Show order items in cart-->
                                             </tr>
-                                        {% endfor %}
+                                            {% endfor %}
+                                        {% endif %}
                                     </tbody>
                                 </table>
                             </div>
@@ -68,10 +74,22 @@
                             <p>The following addresses will be used on the checkout page by default.</p>
                             <h5 class="billing-address">Billing address</h5>
                             <a href="#" class="view">Edit</a>
-                            <p><strong>Bobby Jackson</strong></p>
-                            <address>
-                                Address: Your address goes here.
-                            </address>
+                            {% if address %}
+                                {% if current_user.first_name %}
+                                    <p><strong>{{ current_user.first_name }} {{ current_user.last_name }}</strong></p>
+                                {% endif %}
+                                <address>
+                                    {{ address.street }},
+                                    {{ address.city }},
+                                    {{ address.country }},
+                                    {{ address.zip_code }}
+                                    {% if current_user.phone %}
+                                        <abbr title="Phone">P:</abbr> {{ current_user.phone }}
+                                    {% endif %}
+                                </address>
+                            {% else %}
+                                <h4 class="warnings">Address not set</h4>
+                            {% endif %}
                         </div>
                         <div class="tab-pane fade" id="account-details">
                             <h3>Account details </h3>
