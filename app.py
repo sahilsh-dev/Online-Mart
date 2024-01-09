@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, url_for, request, jsonify, f
 from models import db, Product, Collection, Category, User, UserAddress
 from datetime import datetime, timedelta
 from hashlib import md5
-from forms import RegisterForm, LoginForm
+from forms import RegisterForm, LoginForm, AddressForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, logout_user, current_user
 
@@ -111,14 +111,26 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 def account():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
+    
     orders = current_user.orders
     order_prices = [sum([item.price for item in order.order_items]) for order in orders]
     user_address = UserAddress.query.filter_by(user_id=current_user.id).first()
-    return render_template('account.html', orders=orders, order_prices=order_prices, address=user_address)
+    form = AddressForm()
+
+    if form.validate_on_submit():
+        form.populate_obj(user_address)
+        db.session.commit()
+    return render_template(
+        'account.html', 
+        orders=orders, 
+        order_prices=order_prices, 
+        address=user_address,
+        form=form
+    )
 
 
 @app.route('/product/<int:product_id>')

@@ -72,7 +72,7 @@
                         </div>
                         <div class="tab-pane" id="address">
                             <p>The following addresses will be used on the checkout page by default.</p>
-                            <h5 class="billing-address">Billing address</h5>
+                            <h4 class="billing-address">Billing address</h5>
                             <a href="#" class="view">Edit</a>
                             {% if address %}
                                 {% if current_user.first_name %}
@@ -90,6 +90,28 @@
                             {% else %}
                                 <h4 class="warnings">Address not set</h4>
                             {% endif %}
+                            <form action="{{ url_for('account') }}" method="POST" id="address-form">
+                                {{ form.csrf_token }}
+                                <div class="default-form-box mb-20">
+                                    {{ form.street.label }}
+                                    {{ form.street(placeholder=address.street) }}
+                                </div>
+                                <div class="default-form-box mb-20">
+                                    {{ form.city.label }}
+                                    {{ form.city(placeholder=address.city) }}
+                                </div>
+                                <div class="default-form-box mb-20">
+                                    {{ form.country.label }}
+                                    {{ form.country(placeholder=address.country) }} 
+                                </div>
+                                <div class="default-form-box mb-20">
+                                    {{ form.zip_code.label }}
+                                    {{ form.zip_code(placeholder=address.zip_code) }}
+                                </div>
+                                <div class="save_button mt-3">
+                                    <button>{{ form.submit(class="btn btn-md btn-black-default-hover") }}</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="tab-pane fade" id="account-details">
                             <h3>Account details </h3>

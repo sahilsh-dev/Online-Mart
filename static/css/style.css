@@ -16571,6 +16571,7 @@ table {
 
 .view {
     color: #b19361;
+    margin-bottom: 300px;
 }
 
 .table_desc {
@@ -19359,4 +19360,13 @@ Pages - Contact
 
 #address .warnings {
     margin-top: 3%;
+}
+
+#address-form {
+    margin-top: 4%;
+    display: none;
+}
+
+::placeholder {
+    opacity: 0.70;
 }
