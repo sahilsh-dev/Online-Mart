@@ -8,7 +8,7 @@
                     <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
                         <nav aria-label="breadcrumb">
                             <ul>
-                                <li><a href="{{ url_for('home') }}">Home</a></li>
+                                <li><a href="{{ url_for('main.index') }}">Home</a></li>
                                 {% if prev_page_heading %}
                                 <li><a href="{{ prev_page_url }}">{{ prev_page_heading }}</a></li>
                                 {% endif %}

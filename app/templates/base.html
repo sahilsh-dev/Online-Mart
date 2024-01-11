@@ -29,7 +29,7 @@
                             <!-- Start Header Logo -->
                             <div class="header-logo">
                                 <div class="logo">
-                                    <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/logo/logo_black.png') }}" alt=""></a>
+                                    <a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='images/logo/logo_black.png') }}" alt=""></a>
                                 </div>
                             </div>
                             <!-- End Header Logo -->
@@ -39,13 +39,13 @@
                                 <nav>
                                     <ul>
                                         <li class="has-dropdown">
-                                            <a class="active main-menu-link" href="{{ url_for('home') }}">Home</a>
+                                            <a class="active main-menu-link" href="{{ url_for('main.index') }}">Home</a>
                                         </li>
                                         <li>
-                                            <a href="{{ url_for('shop') }}">Shop </a>
+                                            <a href="{{ url_for('shop.index') }}">Shop </a>
                                         </li>
                                         <li class="has-dropdown has-megaitem">
-                                            <a href="">Explore <i
+                                            <a href="#">Explore <i
                                                     class="fa fa-angle-down"></i></a>
                                             <!-- Mega Menu -->
                                             <div class="mega-menu">
@@ -54,19 +54,19 @@
                                                     <li class="mega-menu-item">
                                                         <a href="#" class="mega-menu-item-title">Categories</a>
                                                         <ul class="mega-menu-sub">
-                                                            <li><a href="{{ url_for('shop_category', category_names=['chair', 'armchair']) }}">
+                                                            <li><a href="{{ url_for('shop.shop_category', category_names=['chair', 'armchair']) }}">
                                                                 Armchairs
                                                             </a></li>
-                                                            <li><a href="{{ url_for('shop_category', category_names=['decorative']) }}">
+                                                            <li><a href="{{ url_for('shop.shop_category', category_names=['decorative']) }}">
                                                                 Decoratives
                                                             </a></li>
-                                                            <li><a href="{{ url_for('shop_category', category_names=['lighting']) }}">
+                                                            <li><a href="{{ url_for('shop.shop_category', category_names=['lighting']) }}">
                                                                 Lighting
                                                             </a></li>
-                                                            <li><a href="{{ url_for('shop_category', category_names=['kitchen utensil']) }}">
+                                                            <li><a href="{{ url_for('shop.shop_category', category_names=['kitchen utensil']) }}">
                                                                 Kitchen Utensils
                                                             </a></li>
-                                                            <li><a href="{{ url_for('shop_category', category_names=['bar stool']) }}">
+                                                            <li><a href="{{ url_for('shop.shop_category', category_names=['bar stool']) }}">
                                                                 Bar Stool
                                                             </a></li>
                                                         </ul>
@@ -75,16 +75,16 @@
                                                     <li class="mega-menu-item">
                                                         <a href="#" class="mega-menu-item-title">New Collections</a>
                                                         <ul class="mega-menu-sub">
-                                                            <li><a href="{{ url_for('shop_collection', collection_name='modern furniture basic collection') }}">
+                                                            <li><a href="{{ url_for('shop.shop_collection', collection_name='modern furniture basic collection') }}">
                                                                 Modern Furniture Collection
                                                             </a></li>   
-                                                            <li><a href="{{ url_for('shop_collection', collection_name='best of neocon gold award') }}">
+                                                            <li><a href="{{ url_for('shop.shop_collection', collection_name='best of neocon gold award') }}">
                                                                 Best of Neocon Gold Award
                                                             </a></li>   
-                                                            <li><a href="{{ url_for('shop_collection', collection_name='luxy chairs design award') }}">
+                                                            <li><a href="{{ url_for('shop.shop_collection', collection_name='luxy chairs design award') }}">
                                                                 Luxy Chairs Design Award
                                                             </a></li>   
-                                                            <li><a href="{{ url_for('shop_collection', collection_name='mini rechargeable table lamps') }}">
+                                                            <li><a href="{{ url_for('shop.shop_collection', collection_name='mini rechargeable table lamps') }}">
                                                                 Mini Rechargeable Table Lamps 
                                                             </a></li>   
                                                      </ul>
@@ -129,7 +129,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url_for('account') }}" class="profile-img" data-toggle="tooltip" data-placement="bottom" title="My Account">
+                                    <a href="{{ url_for('main.account') }}" class="profile-img" data-toggle="tooltip" data-placement="bottom" title="My Account">
                                         <img src="{{ profile_img_url }}" alt="">
                                     </a>
                                 </li>
@@ -157,7 +157,7 @@
                     <div class="mobile-header-left">
                         <ul class="mobile-menu-logo">
                             <li>
-                                <a href="index.html">
+                                <a href="{{ url_for('main.index') }}">
                                     <div class="logo">
                                         <img src="{{ url_for('static', filename='images/logo/logo_black.png') }}" alt="">
                                     </div>
@@ -188,7 +188,7 @@
                                 </a>
                             </li
                             <li>
-                                <a href="{{ url_for('account') }}" class="profile-img" data-toggle="tooltip" data-placement="bottom" title="My Account">
+                                <a href="{{ url_for('main.account') }}" class="profile-img" data-toggle="tooltip" data-placement="bottom" title="My Account">
                                     <img src="{{ porfile_img_url }}" alt="">
                                 </a>
                             </li>
@@ -220,10 +220,10 @@
                 <div class="offcanvas-menu">
                     <ul>
                         <li>
-                            <a href="{{ url_for('home' )}}"><span>Home</span></a>
+                            <a href="{{ url_for('main.index' )}}"><span>Home</span></a>
                         </li> 
                         <li>
-                            <a href="{{ url_for('shop' )}}"><span>Shop</span></a>
+                            <a href="{{ url_for('shop.index' )}}"><span>Shop</span></a>
                         </li>
                         <li>
                             <a href=""><span>Explore</span></a>
@@ -231,19 +231,19 @@
                                 <li>
                                     <a href="#">Categories</a>
                                     <ul class="mobile-sub-menu">
-                                        <li><a href="{{ url_for('shop_category', category_names=['chair', 'armchair']) }}">
+                                        <li><a href="{{ url_for('shop.shop_category', category_names=['chair', 'armchair']) }}">
                                             Armchairs
                                         </a></li>
-                                        <li><a href="{{ url_for('shop_category', category_names=['decorative']) }}">
+                                        <li><a href="{{ url_for('shop.shop_category', category_names=['decorative']) }}">
                                             Decoratives
                                         </a></li>
-                                        <li><a href="{{ url_for('shop_category', category_names=['lighting']) }}">
+                                        <li><a href="{{ url_for('shop.shop_category', category_names=['lighting']) }}">
                                             Lighting
                                         </a></li>
-                                        <li><a href="{{ url_for('shop_category', category_names=['kitchen utensil']) }}">
+                                        <li><a href="{{ url_for('shop.shop_category', category_names=['kitchen utensil']) }}">
                                             Kitchen Utensils
                                         </a></li>
-                                        <li><a href="{{ url_for('shop_category', category_names=['bar stool']) }}">
+                                        <li><a href="{{ url_for('shop.shop_category', category_names=['bar stool']) }}">
                                             Bar Stool
                                         </a></li>
                                     </ul>
@@ -253,16 +253,16 @@
                                 <li>
                                     <a href="#">New Collections</a>
                                     <ul class="mobile-sub-menu">
-                                        <li><a href="{{ url_for('shop_collection', collection_name='modern furniture basic collection') }}">
+                                        <li><a href="{{ url_for('shop.shop_collection', collection_name='modern furniture basic collection') }}">
                                             Modern Furniture Collection
                                         </a></li>   
-                                        <li><a href="{{ url_for('shop_collection', collection_name='best of neocon gold award') }}">
+                                        <li><a href="{{ url_for('shop.shop_collection', collection_name='best of neocon gold award') }}">
                                             Best of Neocon Gold Award
                                         </a></li>   
-                                        <li><a href="{{ url_for('shop_collection', collection_name='luxy chairs design award') }}">
+                                        <li><a href="{{ url_for('shop.shop_collection', collection_name='luxy chairs design award') }}">
                                             Luxy Chairs Design Award
                                         </a></li>   
-                                        <li><a href="{{ url_for('shop_collection', collection_name='mini rechargeable table lamps') }}">
+                                        <li><a href="{{ url_for('shop.shop_collection', collection_name='mini rechargeable table lamps') }}">
                                             Mini Rechargeable Table Lamps 
                                         </a></li>  
                                     </ul>

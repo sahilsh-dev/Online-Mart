@@ -74,6 +74,8 @@ const updateResults = () => {
 const updateSearchResults = debounce(() => updateResults())
 
 
+// Show Address Form
+
 const editAddressBtn = document.querySelector('#address .view');
 editAddressBtn.addEventListener('click', () => {
     const addressForm = document.querySelector('#address-form');

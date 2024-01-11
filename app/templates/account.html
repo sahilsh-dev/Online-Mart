@@ -22,7 +22,7 @@
                             <li><a href="#account-details" data-bs-toggle="tab"
                                     class="nav-link btn btn-block btn-md btn-black-default-hover">Account details</a>
                             </li>
-                            <li><a href="{{ url_for('logout') }}"
+                            <li><a href="{{ url_for('auth.logout') }}"
                                     class="nav-link btn btn-block btn-md btn-black-default-hover">logout</a></li>
                         </ul>
                     </div>
@@ -81,15 +81,15 @@
                                     {{ address.street }},
                                     {{ address.city }},
                                     {{ address.country }},
-                                    {{ address.zip_code }}
+                                    {{ address.zip_code }}<br>
                                     {% if current_user.phone %}
-                                        <abbr title="Phone">P:</abbr> {{ current_user.phone }}
+                                        <abbr title="Phone Number">Phone:</abbr> {{ current_user.phone }}
                                     {% endif %}
                                 </address>
                             {% else %}
                                 <h4 class="warnings">Address not set</h4>
                             {% endif %}
-                            <form action="{{ url_for('account') }}" method="POST" id="address-form">
+                            <form action="{{ url_for('main.account') }}" method="POST" id="address-form">
                                 {{ address_form.csrf_token }}
                                 <div class="default-form-box mb-20">
                                     {{ address_form.street.label }}
@@ -117,7 +117,7 @@
                             <div class="login">
                                 <div class="login_form_container">
                                     <div class="account_login_form">
-                                        <form action="{{ url_for('account') }}" method="POST">
+                                        <form action="{{ url_for('main.account') }}" method="POST">
                                             {{ account_form.csrf_token }}
                                             <div class="input-radio">
                                                 {% for field in account_form.gender %}

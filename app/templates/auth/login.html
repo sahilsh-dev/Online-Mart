@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import render_breadcrumb %}
+
+{% block content %}    
+    {{ render_breadcrumb(section_heading='Login') }}
+
+    <!-- ...:::: Start Customer Login Section :::... -->
+    <div class="customer-login">
+        <div class="container">
+            <div class="row">
+                <!--login area start-->
+                <div class="col-lg-6 col-md-6">
+                    <div class="account_form" data-aos="fade-up" data-aos-delay="0">
+                        <form action="{{ url_for('auth.login') }}" method="POST">
+                            {{ form.csrf_token }}
+                            {% with messages = get_flashed_messages() %}
+                                {% for message in messages %}
+                                    <p class="flash">{{ message }}</p>
+                                {% endfor %}
+                            {% endwith %} 
+                            <div class="default-form-box">
+                                {{ form.username_or_email.label }}
+                                {{ form.username_or_email }}
+                            </div>
+                            <div class="default-form-box">
+                                {{ form.password.label }}
+                                {{ form.password }}
+                            </div>
+                            <div class="login_submit">
+                                <button class="btn btn-md btn-black-default-hover mb-4">{{ form.submit }}</button>
+                                <label class="checkbox-default mb-4" for="offer">
+                                    {{ form.remember_me(id="offer") }}
+                                    <span>Remember me</span>
+                                </label>
+                                <a href="#">Lost your password?</a>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="register-link">Don't have an account? 
+                        <a href="{{ url_for('auth.register') }}">Register</a>
+                    </p>
+                </div>
+                <!--login area end-->
+            </div>
+        </div>
+    </div> <!-- ...:::: End Customer Login Section :::... -->
+
+{% endblock %}
