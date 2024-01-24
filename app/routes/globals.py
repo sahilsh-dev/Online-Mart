@@ -16,7 +16,8 @@ def gravatar_url(email='email@gmail.com', size=50, rating='g', default='mp', for
 def inject_globals():
     categories = Category.query.all()
     profile_img_url = gravatar_url()
-    return dict(categories=categories, profile_img_url=profile_img_url)
+    cart_items = current_user.cart.cart_items if current_user.is_authenticated else []
+    return dict(categories=categories, profile_img_url=profile_img_url, cart_items=cart_items)
 
 
 @login_manager.user_loader

@@ -13,7 +13,7 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
 
-    from app.routes.helpers import inject_globals
+    from app.routes.globals import inject_globals
     app.context_processor(inject_globals)
 
     from app.routes.main import main

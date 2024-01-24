@@ -17,8 +17,11 @@ class User(UserMixin, db.Model):
     phone = db.Column(db.Integer)
      
     address = db.relationship('UserAddress', backref='user')
-    cart = db.relationship('Cart', backref='user')   
+    cart = db.relationship('Cart', backref='user', uselist=False)   
     orders = db.relationship('Order', backref='user')
+
+    def __repr__(self) -> str:
+        return f'<User {self.username}>'
   
 
 class UserAddress(db.Model):

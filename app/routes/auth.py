@@ -4,7 +4,7 @@ from app.forms import RegisterForm, LoginForm
 from flask_login import login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.user import User
-
+from app.models.cart import Cart
 
 auth = Blueprint('auth', __name__)
 
@@ -31,9 +31,10 @@ def register():
         )
         new_user = User(
             username=form.username.data,
-            password_hash = secure_password,
-            email = email,
+            password_hash=secure_password,
+            email=email,
         )
+        new_user.cart = Cart()
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
