@@ -21,12 +21,12 @@ def create_app():
 
     from app.routes.auth import auth
     app.register_blueprint(auth)
- 
-    from app.routes.product import product
-    app.register_blueprint(product, url_prefix='/product')
        
     from app.routes.shop import shop
-    app.register_blueprint(shop, url_perfix='/shop')
-
+    app.register_blueprint(shop)
+    
+    from app.routes.product import product
+    app.register_blueprint(product)
+    
     return app
     

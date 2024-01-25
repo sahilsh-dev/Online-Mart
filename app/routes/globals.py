@@ -17,7 +17,13 @@ def inject_globals():
     categories = Category.query.all()
     profile_img_url = gravatar_url()
     cart_items = current_user.cart.cart_items if current_user.is_authenticated else []
-    return dict(categories=categories, profile_img_url=profile_img_url, cart_items=cart_items)
+    total_cart_price = sum([item.product.price * item.quantity for item in cart_items])
+    return dict(
+        categories=categories, 
+        profile_img_url=profile_img_url, 
+        cart_items=cart_items,
+        total_cart_price=total_cart_price
+    )
 
 
 @login_manager.user_loader

@@ -3,7 +3,6 @@ from app.models.product import Product
 from app.models.collection import Collection
 from app.models.category import Category
 
-
 shop = Blueprint('shop', __name__)
 
 

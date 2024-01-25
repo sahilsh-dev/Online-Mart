@@ -71,14 +71,15 @@ const updateResults = () => {
         .catch(error => console.warn('Error fetching search results:', error));
 }
 
-const updateSearchResults = debounce(() => updateResults())
+const updateSearchResults = debounce(() => updateResults());
 
 
 // Show Address Form
 
 const editAddressBtn = document.querySelector('#address .view');
-editAddressBtn.addEventListener('click', () => {
-    const addressForm = document.querySelector('#address-form');
-    addressForm.style.display = 'block';
-})
-
+if (editAddressBtn) {
+    editAddressBtn.addEventListener('click', () => {
+        const addressForm = document.querySelector('#address-form');
+        addressForm.style.display = 'block';
+    })
+}

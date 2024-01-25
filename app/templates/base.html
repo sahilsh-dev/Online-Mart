@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="zxx">
-
-
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="UTF-8">
@@ -11,11 +9,13 @@
 
     <!-- ::::::::::::::Favicon icon::::::::::::::-->
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/png">
-
+    
     <!-- ::::::::::::::All CSS Files here :::::::::::::: -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor/vendor.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/plugins/plugins.min.css') }}">
+
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous" async></script>
 </head>
 
 <body>
@@ -352,59 +352,40 @@
             <h4 class="offcanvas-title">Shopping Cart</h4>
             <ul class="offcanvas-cart">
                 {% if cart_items %}
+                    {% set total_price = 0 %}
                     {% for item in cart_items %}
-                    <li class="offcanvas-cart-item-single">
-                        <div class="offcanvas-cart-item-block">
-                            <a href="#" class="offcanvas-cart-item-image-link">
-                                <img src="{{ url_for('static', filename='images/product/' + item.product.product_images[0]) }}" alt=""
-                                    class="offcanvas-cart-image">
-                            </a>
-                            <div class="offcanvas-cart-item-content">
-                                <a href="#" class="offcanvas-cart-item-link">Car Wheel</a>
-                                <div class="offcanvas-cart-item-details">
-                                    <span class="offcanvas-cart-item-details-quantity">{{ item.quantity }} x </span>
-                                    <span class="offcanvas-cart-item-details-price">${{ item.product.price }}</span>
+                        <li class="offcanvas-cart-item-single">
+                            <div class="offcanvas-cart-item-block">
+                                <a href="#" class="offcanvas-cart-item-image-link">
+                                    <img src="{{ url_for('static', filename='images/product/' + item.product.product_images[0]) }}" alt=""
+                                        class="offcanvas-cart-image">
+                                </a>
+                                <div class="offcanvas-cart-item-content">
+                                    <a href="#" class="offcanvas-cart-item-link">Car Wheel</a>
+                                    <div class="offcanvas-cart-item-details">
+                                        <span class="offcanvas-cart-item-details-quantity">{{ item.quantity }} x </span>
+                                        <span class="offcanvas-cart-item-details-price">₹{{ item.product.price }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="offcanvas-cart-item-delete text-right">
-                            <a href="#" class="offcanvas-cart-item-delete"><i class="fa fa-trash-o"></i></a>
-                        </div>
-                    </li>
-                    {% endfor %}
-                {% else %}
-                    <h2>No items in Cart</h4>
-                {% endif %}
-
-
-                <li class="offcanvas-cart-item-single">
-                    <div class="offcanvas-cart-item-block">
-                        <a href="#" class="offcanvas-cart-item-image-link">
-                            <img src="{{ url_for('static', filename='images/product/default-1.jpg') }}" alt=""
-                                class="offcanvas-cart-image">
-                        </a>
-                        <div class="offcanvas-cart-item-content">
-                            <a href="#" class="offcanvas-cart-item-link">Car Wheel</a>
-                            <div class="offcanvas-cart-item-details">
-                                <span class="offcanvas-cart-item-details-quantity">1 x </span>
-                                <span class="offcanvas-cart-item-details-price">$49.00</span>
+                            <div class="offcanvas-cart-item-delete text-right">
+                                <a href="#" class="offcanvas-cart-item-delete"><i class="fa fa-trash-o"></i></a>
                             </div>
-                        </div>
+                        </li>
+                    {% endfor %}
+                    <div class="offcanvas-cart-total-price">
+                        <span class="offcanvas-cart-total-price-text">Subtotal:</span>
+                        <span class="offcanvas-cart-total-price-value">₹{{ total_cart_price }}</span>
                     </div>
-                    <div class="offcanvas-cart-item-delete text-right">
-                        <a href="#" class="offcanvas-cart-item-delete"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                </li>
+                    <ul class="offcanvas-cart-action-button">
+                        <li><a href="{{ url_for('main.cart') }}" class="btn btn-block btn-golden">View Cart</a></li>
+                        <li><a href="compare.html" class=" btn btn-block btn-golden mt-5">Checkout</a></li>
+                    </ul>
+                {% else %}
+                    <h2 class="bg-golden">No items in Cart...</h2>
+                {% endif %}
             </ul>
-            <div class="offcanvas-cart-total-price">
-                <span class="offcanvas-cart-total-price-text">Subtotal:</span>
-                <span class="offcanvas-cart-total-price-value">$170.00</span>
-            </div>
-            <ul class="offcanvas-cart-action-button">
-                <li><a href="cart.html" class="btn btn-block btn-golden">View Cart</a></li>
-                <li><a href="compare.html" class=" btn btn-block btn-golden mt-5">Checkout</a></li>
-            </ul>
-        </div> <!-- End  Offcanvas Addcart Wrapper -->
+       </div> <!-- End  Offcanvas Addcart Wrapper -->
 
     </div> <!-- End  Offcanvas Addcart Section -->
 
@@ -429,7 +410,7 @@
                             <a href="#" class="offcanvas-wishlist-item-link">Car Wheel</a>
                             <div class="offcanvas-wishlist-item-details">
                                 <span class="offcanvas-wishlist-item-details-quantity">1 x </span>
-                                <span class="offcanvas-wishlist-item-details-price">$49.00</span>
+                                <span class="offcanvas-wishlist-item-details-price">₹49.00</span>
                             </div>
                         </div>
                     </div>
@@ -647,53 +628,7 @@
     <button class="material-scrolltop" type="button"></button>
 
     <!-- Start Modal Add cart -->
-    <div class="modal fade" id="modalAddcart" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col text-right">
-                                <button type="button" class="close modal-close" data-bs-dismiss="modal"
-                                    aria-label="Close">
-                                    <span aria-hidden="true"> <i class="fa fa-times"></i></span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="modal-add-cart-product-img">
-                                            <img class="img-fluid"
-                                                src="{{ url_for('static', filename='images/product/default-1.jpg') }}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="modal-add-cart-info"><i class="fa fa-check-square"></i>Added to cart
-                                            successfully!</div>
-                                        <div class="modal-add-cart-product-cart-buttons">
-                                            <a href="cart.html">View Cart</a>
-                                            <a href="checkout.html">Checkout</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 modal-border">
-                                <ul class="modal-add-cart-product-shipping-info">
-                                    <li> <strong><i class="icon-shopping-cart"></i> There Are 5 Items In Your
-                                            Cart.</strong></li>
-                                    <li> <strong>TOTAL PRICE: </strong> <span>$187.00</span></li>
-                                    <li class="modal-continue-button"><a href="#" data-bs-dismiss="modal">CONTINUE
-                                            SHOPPING</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End Modal Add cart -->
+    
 
     <!-- Start Modal Quickview cart -->
     <div class="modal fade" id="modalQuickview" tabindex="-1" role="dialog" aria-hidden="true">

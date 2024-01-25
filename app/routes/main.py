@@ -8,7 +8,6 @@ from app.models.collection import Collection
 from app.models.user import UserAddress
 from datetime import datetime, timedelta
 
-
 main = Blueprint('main', __name__)
 
 
@@ -59,6 +58,8 @@ def account():
         address_form=address_form,
         account_form=account_form
     )
+    
 
-
-
+@main.route('/cart')
+def cart():
+    return render_template('cart.html')
