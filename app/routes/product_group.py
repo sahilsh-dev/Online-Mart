@@ -26,7 +26,9 @@ def add_to_cart(product_id):
             cart_item = CartItem(cart_id=cart.id, product_id=product_id, quantity=quantity)
             db.session.add(cart_item)
             db.session.commit()
-        return render_template('components/add-cart-modal.html', product=product, item_quantity=quantity)
+        add_item_template = render_template('components/add-cart-modal.html', product=product, item_quantity=quantity) 
+        cart_content_template = render_template('components/cart-content.html', cart_items=cart.cart_items)
+        return add_item_template + cart_content_template
     else:
         return ('<h2>You need to login to add items to cart</h2>')
-            
+

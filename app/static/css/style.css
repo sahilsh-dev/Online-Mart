@@ -19379,3 +19379,9 @@ Pages - Contact
 .bg-golden {
     color: #b19361;
 }
+
+.modal-open {
+  overflow:hidden;
+  overflow-y:scroll;
+  padding-right:0 !important;
+}

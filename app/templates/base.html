@@ -341,7 +341,13 @@
     </div> <!-- ...:::: End Offcanvas Mobile Menu Section:::... -->
 
     <!-- Start Offcanvas Addcart Section -->
-    {% include 'components/offcanvas-add-cart.html' %}
+    <div id="offcanvas-add-cart" class="offcanvas offcanvas-rightside offcanvas-add-cart-section">
+        <!-- Start Offcanvas Header -->
+        <div class="offcanvas-header text-right">
+            <button class="offcanvas-close"><i class="ion-android-close"></i></button>
+        </div> <!-- End Offcanvas Header -->
+        {% include 'components/cart-content.html' %}
+    </div> 
     <!-- End  Offcanvas Addcart Section -->
 
     <!-- Start Offcanvas Mobile Menu Section -->
