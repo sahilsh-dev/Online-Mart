@@ -1,0 +1,64 @@
+<!-- Start Modal Add cart -->
+<div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col text-right">
+                        <button type="button" class="close modal-close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="modal-add-cart-product-img">
+                                    <img class="img-fluid"
+                                        src="{{ url_for('static', filename='images/product/' + product.images[0].file_name) }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="modal-add-cart-info">
+                                    {% if item_quantity %}
+                                        <i class="fa fa-check-square"></i>
+                                        Added to cart successfully!
+                                    {% else %}
+                                        Adding items to cart...
+                                    {% endif %}
+                                </div>
+                                <div class="modal-add-cart-product-cart-buttons">
+                                    <a href="{{ url_for('product_group.cart') }}">View Cart</a>
+                                    <a href="checkout.html">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 modal-border">
+                        <ul class="modal-add-cart-product-shipping-info">
+                            {% if item_quantity %}
+                                <li> <strong>
+                                    <i class="icon-shopping-cart"></i> 
+                                    {{ item_quantity }} items added to your cart.
+                                </strong></li> 
+                            {% endif %}
+                            <li> 
+                                <strong>TOTAL PRICE: </strong> 
+                                {% if item_quantity %}
+                                    <span>₹{{ product.price * item_quantity }}</span>
+                                {% else %}
+                                    <span>Calculating...</span>
+                                {% endif %}
+                            </li>
+                            <li class="modal-continue-button">
+                                <a href="#" data-bs-dismiss="modal">CONTINUE SHOPPING</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -28,5 +28,8 @@ def create_app():
     from app.routes.product import product
     app.register_blueprint(product)
     
+    from app.routes.product_group import product_group
+    app.register_blueprint(product_group)
+    
     return app
     

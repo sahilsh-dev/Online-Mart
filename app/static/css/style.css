@@ -16863,7 +16863,7 @@ table {
     margin-right: 20px;
 }
 
-.product-add-to-cart-btn a {
+.product-add-to-cart-btn input {
     display: inline-block;
     font-size: 16px;
     background: #24262b;
@@ -16871,13 +16871,13 @@ table {
     line-height: 50px;
     text-transform: uppercase;
     text-align: center;
-    color: #FFF;
     border-radius: 3px;
     margin-top: 7px;
     font-weight: 700;
     padding: 0 50px;
 }
-.product-add-to-cart-btn a:hover {
+
+.product-add-to-cart-btn input:hover {
     background: #b19361;
 }
 

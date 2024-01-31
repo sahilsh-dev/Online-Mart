@@ -58,9 +58,11 @@
                             <div class="price">₹{{ product.price }}</div>
                             <p>{{ product.description }}</p>
                         </div> <!-- End  Product Details Text Area-->
+
                         <!-- Start Product Variable Area -->
                         <div class="product-details-variable">
                             <h4 class="title">Available Options</h4>
+
                             <!-- Product Variable Single Item -->
                             <div class="variable-single-item">
                                 <div class="product-stock"> 
@@ -73,23 +75,30 @@
                                     {{ product.stock_quantity }} IN STOCK
                                 </div>
                             </div>
+
                             <!-- Product Variable Single Item -->
-                            <div class="d-flex align-items-center ">
+                            <form 
+                                hx-post="{{ url_for('product_group.add_to_cart', product_id=product.id) }}" 
+                                hx-target="#modalAddcart"
+                                class="d-flex align-items-center"
+                            >
                                 <div class="variable-single-item ">
                                     <span>Quantity</span>
                                     <div class="product-variable-quantity">
-                                        <input min="1" max="100" value="1" type="number">
+                                        <input name="quantity" min="1" max="100" value="1" type="number">
                                     </div>
                                 </div>
 
                                 <div class="product-add-to-cart-btn">
-                                    <a hx-post="{{ url_for('product.add_to_cart') + '/' + product.id }}" 
-                                        class="btn btn-block btn-lg btn-black-default-hover"
+                                    <input class="btn btn-block btn-lg btn-black-default-hover"
                                         data-bs-toggle="modal" 
-                                        data-bs-target="#modalAddcart">+ Add To Cart
-                                    </a>
+                                        data-bs-target="#modalAddcart"
+                                        type="submit"
+                                        value="+Add To cart"
+                                    />
                                 </div>
-                            </div>
+                            </form>
+
                             <!-- Start  Product Details Meta Area-->
                             <div class="product-details-meta mb-20">
                                 <a href="wishlist.html" class="icon-space-right"><i class="icon-heart"></i>Add to wishlist</a>
@@ -105,6 +114,7 @@
                                 {% endfor %}
                             </ul>
                         </div> <!-- End  Product Details Catagories Area-->
+
                         <!-- Start  Product Details Social Area-->
                         <div class="product-details-social">
                             <span class="title">SHARE THIS PRODUCT:</span>
@@ -157,7 +167,7 @@
                                             <li class="comment-list">
                                                 <div class="comment-wrapper">
                                                     <div class="comment-img">
-                                                        <img src="assets/images/user/image-1.png" alt="">
+                                                        <img src="{{ url_for('static', filename='images/user/image-1.png') }}" alt="">
                                                     </div>
                                                     <div class="comment-content">
                                                         <div class="comment-content-top">
@@ -199,7 +209,7 @@
                                                     <li class="comment-reply-list">
                                                         <div class="comment-wrapper">
                                                             <div class="comment-img">
-                                                                <img src="assets/images/user/image-2.png" alt="">
+                                                                <img src="{{ url_for('static', filename='images/user/image-2.png') }}" alt="">
                                                             </div>
                                                             <div class="comment-content">
                                                                 <div class="comment-content-top">
@@ -234,7 +244,7 @@
                                             <li class="comment-list">
                                                 <div class="comment-wrapper">
                                                     <div class="comment-img">
-                                                        <img src="assets/images/user/image-3.png" alt="">
+                                                        <img src="{{ url_for('static', filename='images/user/image-3.png') }}" alt="">
                                                     </div>
                                                     <div class="comment-content">
                                                         <div class="comment-content-top">
@@ -402,5 +412,10 @@
         </div>
     </div>
     <!-- End Product Default Slider Section -->
-
+    
+    <!-- Start Modal Add cart -->
+    <div class="modal fade" id="modalAddcart" tabindex="-1" role="dialog" aria-hidden="true">
+        {% include 'components/add-cart-modal.html' %}
+    </div>
+    <!-- End Modal Add cart --> 
 {% endblock %}

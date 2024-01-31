@@ -60,6 +60,3 @@ def account():
     )
     
 
-@main.route('/cart')
-def cart():
-    return render_template('cart.html')

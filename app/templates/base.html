@@ -357,7 +357,7 @@
                         <li class="offcanvas-cart-item-single">
                             <div class="offcanvas-cart-item-block">
                                 <a href="#" class="offcanvas-cart-item-image-link">
-                                    <img src="{{ url_for('static', filename='images/product/' + item.product.product_images[0]) }}" alt=""
+                                    <img src="{{ url_for('static', filename='images/product/' + item.product.images[0].file_name) }}" alt=""
                                         class="offcanvas-cart-image">
                                 </a>
                                 <div class="offcanvas-cart-item-content">
@@ -378,7 +378,7 @@
                         <span class="offcanvas-cart-total-price-value">₹{{ total_cart_price }}</span>
                     </div>
                     <ul class="offcanvas-cart-action-button">
-                        <li><a href="{{ url_for('main.cart') }}" class="btn btn-block btn-golden">View Cart</a></li>
+                        <li><a href="{{ url_for('product_group.cart') }}" class="btn btn-block btn-golden">View Cart</a></li>
                         <li><a href="compare.html" class=" btn btn-block btn-golden mt-5">Checkout</a></li>
                     </ul>
                 {% else %}
@@ -626,9 +626,6 @@
 
     <!-- material-scrolltop button -->
     <button class="material-scrolltop" type="button"></button>
-
-    <!-- Start Modal Add cart -->
-    
 
     <!-- Start Modal Quickview cart -->
     <div class="modal fade" id="modalQuickview" tabindex="-1" role="dialog" aria-hidden="true">
