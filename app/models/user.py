@@ -2,6 +2,7 @@ from app.extensions import db
 from flask_login import UserMixin
 from .order import Order
 from .cart import Cart
+from .wishlist import Wishlist
 
 
 class User(UserMixin, db.Model):
@@ -18,6 +19,7 @@ class User(UserMixin, db.Model):
      
     address = db.relationship('UserAddress', backref='user')
     cart = db.relationship('Cart', backref='user', uselist=False)   
+    wishlist = db.relationship('Wishlist', backref='user', uselist=False)
     orders = db.relationship('Order', backref='user')
 
     def __repr__(self) -> str:
