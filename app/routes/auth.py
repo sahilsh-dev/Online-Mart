@@ -5,6 +5,7 @@ from flask_login import login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.user import User
 from app.models.cart import Cart
+from app.models.wishlist import Wishlist
 
 auth = Blueprint('auth', __name__)
 
@@ -35,6 +36,7 @@ def register():
             email=email,
         )
         new_user.cart = Cart()
+        new_user.wishlist = Wishlist()
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)

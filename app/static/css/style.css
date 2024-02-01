@@ -14367,7 +14367,7 @@ input {
 }
 
 .icon-space-right i {
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
 .review-star li {
@@ -19384,4 +19384,8 @@ Pages - Contact
   overflow:hidden;
   overflow-y:scroll;
   padding-right:0 !important;
+}
+
+.product-details-meta > a {
+    cursor: pointer;
 }
