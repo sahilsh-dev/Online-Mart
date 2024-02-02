@@ -18,7 +18,8 @@ def product_details(product_id):
             db.session.add(user_wishlist)
             db.session.commit()
         wishlist_item = WishlistItem.query.filter_by(wishlist_id=user_wishlist.id, product_id=product_id).first()
-    return render_template('product-details.html', product=product, related_products=related_products, wishlist_item=wishlist_item)
+        return render_template('product-details.html', product=product, related_products=related_products, wishlist_item=wishlist_item)
+    return render_template('product-details.html', product=product, related_products=related_products)
 
 
 @product.route('/product/<int:product_id>')

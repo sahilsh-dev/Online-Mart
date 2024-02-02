@@ -13,9 +13,8 @@ def my_cart():
     return render_template('cart.html')
 
 
-@product_group.route('/products/cart/add', methods=['POST'])
-def add_to_cart():
-    product_id = int(request.form.get('product_id'))
+@product_group.route('/products/cart/add/<int:product_id>', methods=['POST'])
+def add_to_cart(product_id):
     quantity = int(request.form.get('quantity'))
     if current_user.is_authenticated and quantity and product_id:
         user_cart = current_user.cart
@@ -45,9 +44,8 @@ def remove_cart_item():
         return render_template('components/cart-content.html', cart_items=current_user.cart.cart_items)
 
         
-@product_group.route('/products/wishlist/add', methods=['POST'])
-def add_to_wishlist():
-    product_id = int(request.form.get('product_id'))
+@product_group.route('/products/wishlist/add/<int:product_id>', methods=['POST'])
+def add_to_wishlist(product_id):
     if current_user.is_authenticated and product_id:
         user_wishlist = current_user.wishlist
         new_wishlist_item = WishlistItem(wishlist_id=user_wishlist.id, product_id=product_id)
@@ -58,9 +56,8 @@ def add_to_wishlist():
         return ('<h2>Error! Please login again</h2>')
 
 
-@product_group.route('/products/wishlist/remove', methods=['POST'])
-def remove_wishlist_item():
-    wishlist_item_id = int(request.form.get('wishlist_item_id'))
+@product_group.route('/products/wishlist/remove/<int:wishlist_item_id>', methods=['POST'])
+def remove_wishlist_item(wishlist_item_id):
     if current_user.is_authenticated and wishlist_item_id:
         delete_item = WishlistItem.query.get(wishlist_item_id) 
         product = delete_item.product
