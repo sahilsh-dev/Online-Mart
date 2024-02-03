@@ -35,7 +35,7 @@ def add_to_cart(product_id):
         cart_count_template = f'<span hx-swap-oob="true" id="num-cart-items" class="item-count">{num_cart_items}</span>'
         return add_item_modal_template + cart_content_template + cart_count_template
     else:
-        return ('<h2>Error! Please login again</h2>')
+        return ('<h2>Error! Please login</h2>')
 
 
 @product_group.route('/products/cart/remove/<int:cart_item_id>', methods=['POST'])
@@ -48,7 +48,7 @@ def remove_cart_item(cart_item_id):
         cart_count_template = f'<span hx-swap-oob="true" id="num-cart-items" class="item-count">{num_cart_items}</span>'
         return render_template('components/cart-content.html', cart_items=current_user.cart.cart_items) + cart_count_template
     else:
-        return ('<h2>Error! Please login again</h2>')
+        return ('<h2>Error! Please login</h2>')
     
         
 @product_group.route('/products/wishlist')
@@ -70,7 +70,7 @@ def add_to_wishlist(product_id):
         add_wishlist_template =  render_template('components/add-wishlist.html', wishlist_item=new_wishlist_item)
         return add_wishlist_template + wishlist_content_template + wishlist_count_template
     else:
-        return ('<h2>Error! Please login again</h2>')
+        return ('<h2>Error! Please login</h2>')
 
 
 @product_group.route('/products/wishlist/remove/<int:wishlist_item_id>', methods=['POST'])
@@ -87,4 +87,4 @@ def remove_wishlist_item(wishlist_item_id):
         wishlist_content_template = render_template('components/wishlist-content.html', wishlist_items=current_user.wishlist.wishlist_items)
         return add_wishlist_template + wishlist_content_template + wishlist_count_template
     else:
-        return ('<h2>Error! Please login again</h2>')
+        return ('<h2>Error! Please login</h2>')

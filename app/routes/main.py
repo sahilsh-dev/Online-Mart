@@ -33,13 +33,12 @@ def account():
     orders = current_user.orders
     order_prices = [sum([item.price for item in order.order_items]) for order in orders]
     user_address = UserAddress.query.filter_by(user_id=current_user.id).first()
-    if not user_address:
-        user_address = UserAddress(user_id=current_user.id)
-        db.session.add(user_address)
-        db.session.commit() 
+    
     address_form = AddressForm()
     account_form = AccountDetailsForm()
     if address_form.validate_on_submit():
+        if not user_address:
+            user_address = UserAddress(user_id=current_user.id)
         address_form.populate_obj(user_address)
         db.session.commit()
     if account_form.validate_on_submit():

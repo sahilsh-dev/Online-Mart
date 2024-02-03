@@ -26,7 +26,7 @@ quickviewModal.addEventListener('show.bs.modal', function (event) {
     const quickviewBtn = event.relatedTarget;
     const productId = quickviewBtn.getAttribute('data-bs-product-id');
 
-    const productDataURL = `/product/${productId}`;
+    const productDataURL = `/product/modal/${productId}`;
     fetch(productDataURL)
         .then(response => response.json())
         .then(data => {

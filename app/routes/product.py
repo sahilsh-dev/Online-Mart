@@ -32,7 +32,7 @@ def product_details(product_id):
     )
 
 
-@product.route('/product/<int:product_id>')
+@product.route('/product/modal/<int:product_id>')
 def get_product_modal_data(product_id):
     product = Product.query.get(product_id)
     return jsonify({
