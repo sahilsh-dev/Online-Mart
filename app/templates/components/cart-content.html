@@ -1,6 +1,6 @@
 <!-- Start  Offcanvas Addcart Wrapper -->
 <div hx-swap-oob="true" id="cart-content" class="offcanvas-add-cart-wrapper">
-    <h4 class="offcanvas-title">Shopping Cart</h4>
+    <h4 class="offcanvas-title">My Shopping Cart</h4>
     <ul class="offcanvas-cart">
         {% if cart_items %}
             {% set total_price = 0 %}
@@ -19,13 +19,11 @@
                             </div>
                         </div>
                     </div>
-                    <div hx-post="{{ url_for('product_group.remove_cart_item') }}" 
+                    <div hx-post="{{ url_for('product_group.remove_cart_item', cart_item_id=item.id) }}" 
                         hx-target="#cart-content"
                         hx-trigger="click"
-                        hx-include="find input"
                         class="offcanvas-cart-item-delete text-right"
                     >
-                        <input type="hidden" name="cart_item_id" value="{{ item.id }}">
                         <a href="#" class="offcanvas-cart-item-delete"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </li>

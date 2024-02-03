@@ -18,17 +18,15 @@ def inject_globals():
     profile_img_url = gravatar_url()
     cart_items = current_user.cart.cart_items if current_user.is_authenticated else []
     total_cart_price = sum([item.product.price * item.quantity for item in cart_items])
-    num_cart_items, num_wishlist_items = 0, 0
-    if current_user.is_authenticated:
-        num_wishlist_items = len(current_user.wishlist.wishlist_items) 
-        num_cart_items = len(current_user.cart.cart_items)
+    wishlist_items = current_user.wishlist.wishlist_items if current_user.is_authenticated else []
     return dict(
         categories=categories, 
         profile_img_url=profile_img_url, 
         cart_items=cart_items,
+        wishlist_items=wishlist_items,
         total_cart_price=total_cart_price,
-        num_wishlist_items=num_wishlist_items,
-        num_cart_items=num_cart_items
+        num_wishlist_items=len(wishlist_items),
+        num_cart_items=len(cart_items)
     )
 
 
