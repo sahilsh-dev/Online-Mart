@@ -1,0 +1,41 @@
+<!-- Start Header Action Link -->
+<div id="header-links">
+    <ul class="header-action-link action-color--black action-hover-color--golden">
+        <li>
+            <a href="#search">
+                <i class="icon-magnifier"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#offcanvas-wishlist" class="offcanvas-toggle">
+                <i class="icon-heart"></i>
+                {% if num_wishlist_items %}
+                    <span hx-swap-oob="true" id="num-wishlist-items" class="item-count">{{ num_wishlist_items }}</span>
+                {% else %}
+                    <span hx-swap-oob="true" id="num-wishlist-items" class="item-count">0</span>
+                {% endif %}
+            </a>
+        </li>
+        <li>
+            <a href="#offcanvas-add-cart" class="offcanvas-toggle">
+                <i class="icon-bag" ></i>
+                {% if num_cart_items %}
+                    <span hx-swap-oob="true" id="num-cart-items" class="item-count">{{ num_cart_items }}</span>
+                {% else %}
+                    <span hx-swap-oob="true" id="num-cart-items" class="item-count">0</span>
+                {% endif %}
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('main.account') }}" class="profile-img" data-toggle="tooltip" data-placement="bottom" title="My Account">
+                <img src="{{ profile_img_url }}" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="#offcanvas-about" class="offacnvas offside-about offcanvas-toggle">
+                <i class="icon-menu"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- End Header Action Link -->
