@@ -17,10 +17,15 @@ def index():
     new_arrivals = Product.query.filter(Product.created_at > threshold_date).all() 
     best_sellers_collection = Collection.query.get('best sellers').products
     best_sellers = [Product.query.get(collection_item.product_id) for collection_item in best_sellers_collection]
+    user_wishlist = []
+    if current_user.is_authenticated:
+        user_wishlist = [i.product_id for i in current_user.wishlist.wishlist_items]
+    print(user_wishlist)
     return render_template(
         'index.html', 
         new_arrivals=new_arrivals, 
         best_sellers=best_sellers, 
+        user_wishlist=user_wishlist,
         page='home'
     )
 

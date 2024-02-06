@@ -8,12 +8,12 @@ from app.models.wishlist import WishlistItem
 cart = Blueprint('cart', __name__)
 
     
-@cart.route('/products/cart')
+@cart.route('/cart')
 def index():
     return render_template('cart.html')
 
 
-@cart.route('/products/cart/add/<int:product_id>', methods=['POST'])
+@cart.route('/cart/add/<int:product_id>', methods=['POST'])
 def add_to_cart(product_id):
     quantity = int(request.form.get('quantity')) if request.form.get('quantity') else 1 
     if current_user.is_authenticated and product_id:
@@ -38,7 +38,7 @@ def add_to_cart(product_id):
         return ('<h2>Error! Please login</h2>')
 
 
-@cart.route('/products/cart/remove/<int:cart_item_id>', methods=['POST'])
+@cart.route('/cart/remove/<int:cart_item_id>', methods=['POST'])
 def remove_cart_item(cart_item_id):
     if current_user.is_authenticated and cart_item_id:
         delete_item = CartItem.query.get(cart_item_id) 

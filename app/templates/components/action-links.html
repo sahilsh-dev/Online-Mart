@@ -1,0 +1,26 @@
+<div class="action-link">
+    <div class="action-link-left">
+        <a hx-post="{{ url_for('cart.add_to_cart', product_id=product.id) }}" 
+            hx-target="#modalAddcart" 
+            data-bs-toggle="modal"
+            data-bs-target="#modalAddcart">Add to Cart
+        </a>
+    </div>
+    <div class="action-link-right">
+        <a  data-bs-toggle="modal" data-bs-product-id="{{ product.id }}"
+            data-bs-target="#modalQuickview"><i class="icon-magnifier"></i>
+        </a>
+        <a  hx-post="{{ url_for('wishlist.add_to_wishlist', product_id=product.id) }}"
+            hx-swap="none"
+        >
+            <i  hx-swap-oob="true" 
+                id="action-link-item-{{ product.id }}" 
+                {% if product.id in user_wishlist %} 
+                    class="fa-heart fa-solid" 
+                {% else %} 
+                    class="fa-heart fa-regular" 
+                {% endif %}>
+            </i>
+        </a>
+    </div>
+</div>

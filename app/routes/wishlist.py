@@ -6,12 +6,12 @@ from app.extensions import db
 wishlist = Blueprint('wishlist', __name__)
 
 
-@wishlist.route('/products/wishlist')
+@wishlist.route('/wishlist')
 def index():
     return render_template('wishlist.html')
         
         
-@wishlist.route('/products/wishlist/content')
+@wishlist.route('/wishlist/content')
 def update_wishlist_content():
     wishlist_content_template = render_template('components/wishlist-content.html', wishlist_items=current_user.wishlist.wishlist_items)
     num_wishlist_items = len(current_user.wishlist.wishlist_items)
@@ -19,7 +19,7 @@ def update_wishlist_content():
     return wishlist_content_template + wishlist_count_template
        
         
-@wishlist.route('/products/wishlist/add/<int:product_id>', methods=['POST'])
+@wishlist.route('/wishlist/add/<int:product_id>', methods=['POST'])
 def add_to_wishlist(product_id):
     if current_user.is_authenticated and product_id:
         user_wishlist = current_user.wishlist
@@ -38,7 +38,7 @@ def add_to_wishlist(product_id):
         return ('<h2>Error! Please login</h2>')
 
 
-@wishlist.route('/products/wishlist/remove/<int:wishlist_item_id>', methods=['POST'])
+@wishlist.route('/wishlist/remove/<int:wishlist_item_id>', methods=['POST'])
 def remove_wishlist_item(wishlist_item_id):
     if current_user.is_authenticated and wishlist_item_id:
         delete_item = WishlistItem.query.get(wishlist_item_id) 
