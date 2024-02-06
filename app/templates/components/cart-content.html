@@ -19,7 +19,7 @@
                             </div>
                         </div>
                     </div>
-                    <div hx-post="{{ url_for('product_group.remove_cart_item', cart_item_id=item.id) }}" 
+                    <div hx-post="{{ url_for('cart.remove_cart_item', cart_item_id=item.id) }}" 
                         hx-target="#cart-content"
                         hx-trigger="click"
                         class="offcanvas-cart-item-delete text-right"
@@ -33,7 +33,7 @@
                 <span class="offcanvas-cart-total-price-value">₹{{ total_cart_price }}</span>
             </div>
             <ul class="offcanvas-cart-action-button">
-                <li><a href="{{ url_for('product_group.my_cart') }}" class="btn btn-block btn-golden">View Cart</a></li>
+                <li><a href="{{ url_for('cart.index') }}" class="btn btn-block btn-golden">View Cart</a></li>
                 <li><a href="compare.html" class=" btn btn-block btn-golden mt-5">Checkout</a></li>
             </ul>
         {% else %}

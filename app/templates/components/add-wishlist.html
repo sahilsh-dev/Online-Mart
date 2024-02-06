@@ -1,19 +1,15 @@
-<div class="product-details-meta mb-20">
+<div hx-swap-oob="true" id="product-add-wishlist" class="product-details-meta mb-20">
     {% if wishlist_item %}
-        <a  hx-post="{{ url_for('product_group.remove_wishlist_item', wishlist_item_id=wishlist_item.id) }}"
-            hx-trigger="click"
-            hx-target="closest .product-details-meta"
-            hx-swap="outerHTML"
+        <a  hx-post="{{ url_for('wishlist.remove_wishlist_item', wishlist_item_id=wishlist_item.id) }}"
+            hx-swap="none"
             class="icon-space-right"
         >
             <i class="fa-heart fa-solid bg-golden"></i>
             Remove from wishlist
         </a>
     {% else %}
-        <a  hx-post="{{ url_for('product_group.add_to_wishlist', product_id=product.id) }}"
-            hx-trigger="click"
-            hx-target="closest .product-details-meta"
-            hx-swap="outerHTML"
+        <a  hx-post="{{ url_for('wishlist.add_to_wishlist', product_id=product.id) }}"
+            hx-swap="none"
             class="icon-space-right"
         >
             <i class="fa-heart fa-regular"></i>

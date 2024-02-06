@@ -28,8 +28,11 @@ def create_app():
     from app.routes.product import product
     app.register_blueprint(product)
     
-    from app.routes.product_group import product_group
-    app.register_blueprint(product_group)
+    from app.routes.cart import cart
+    app.register_blueprint(cart)
+    
+    from app.routes.wishlist import wishlist
+    app.register_blueprint(wishlist)
     
     return app
     

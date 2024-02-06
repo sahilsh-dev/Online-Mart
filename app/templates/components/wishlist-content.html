@@ -1,38 +1,39 @@
 <!-- Start Offcanvas Mobile Menu Wrapper -->
-<div hx-swap-oob="true" id="wishlist-content" class="offcanvas-wishlist-wrapper">
+<div hx-get="{{ url_for('wishlist.update_wishlist_content') }}" 
+    hx-trigger="updateWishlist from:body" 
+    hx-swap="outerHTMl" 
+    id="wishlist-content" 
+    class="offcanvas-wishlist-wrapper"
+    >
     <h4 class="offcanvas-title">My Wishlist</h4>
     {% if wishlist_items %}
         <ul class="offcanvas-wishlist">
             {% for item in wishlist_items %}
-                <li class="offcanvas-wishlist-item-single">
-                    <div class="offcanvas-wishlist-item-block">
-                        <a href="#" class="offcanvas-wishlist-item-image-link">
-                            <img src="{{ url_for('static', filename='images/product/' + item.product.images[0].file_name) }}" alt=""
-                                class="offcanvas-wishlist-image">
-                        </a>
-                        <div class="offcanvas-wishlist-item-content">
-                            <a href="#" class="offcanvas-wishlist-item-link">{{ item.product.product_name }}</a>
-                            <div class="offcanvas-wishlist-item-details">
-                                <span class="offcanvas-wishlist-item-details-price">₹{{ item.product.price }}</span>
-                            </div>
+            <li class="offcanvas-wishlist-item-single">
+                <div class="offcanvas-wishlist-item-block">
+                    <a href="#" class="offcanvas-wishlist-item-image-link">
+                        <img src="{{ url_for('static', filename='images/product/' + item.product.images[0].file_name) }}"
+                            alt="" class="offcanvas-wishlist-image">
+                    </a>
+                    <div class="offcanvas-wishlist-item-content">
+                        <a href="#" class="offcanvas-wishlist-item-link">{{ item.product.product_name }}</a>
+                        <div class="offcanvas-wishlist-item-details">
+                            <span class="offcanvas-wishlist-item-details-price">₹{{ item.product.price }}</span>
                         </div>
                     </div>
-                    <div hx-post="{{ url_for('product_group.remove_wishlist_item', wishlist_item_id=item.id) }}"
-                        hx-target=".product-details-meta"
-                        hx-swap="outerHTML"
-                        hx-trigger="click"
-                        class="offcanvas-wishlist-item-delete text-right"
-                    >
-                        <a href="#" class="offcanvas-wishlist-item-delete"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                </li>
+                </div>
+                <div hx-post="{{ url_for('wishlist.remove_wishlist_item', wishlist_item_id=item.id) }}"
+                    hx-swap="none" hx-trigger="click"
+                    class="offcanvas-wishlist-item-delete text-right">
+                    <a href="#" class="offcanvas-wishlist-item-delete"><i class="fa fa-trash-o"></i></a>
+                </div>
+            </li>
             {% endfor %}
         </ul>
         <ul class="offcanvas-wishlist-action-button">
-            <li><a href="{{ url_for('product_group.my_wishlist') }}" class="btn btn-block btn-golden">View wishlist</a></li>
+            <li><a href="{{ url_for('wishlist.index') }}" class="btn btn-block btn-golden">View wishlist</a></li>
         </ul>
     {% else %}
         <h5 class="bg-golden">No items in Wishlist...</h5>
     {% endif %}
 </div> <!-- End Offcanvas Mobile Menu Wrapper -->
-

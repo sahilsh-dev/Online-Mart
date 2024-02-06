@@ -78,7 +78,7 @@
 
                             <!-- Product Variable Single Item -->
                             <form 
-                                hx-post="{{ url_for('product_group.add_to_cart', product_id=product.id) }}" 
+                                hx-post="{{ url_for('cart.add_to_cart', product_id=product.id) }}" 
                                 hx-target="#modalAddcart"
                                 class="d-flex align-items-center"
                             >
