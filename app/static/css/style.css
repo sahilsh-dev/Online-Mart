@@ -19410,3 +19410,7 @@ Pages - Contact
     color: #fff;
     transition: all 0.5s ease;
 }
+
+.action-link a {
+    cursor: pointer;
+}

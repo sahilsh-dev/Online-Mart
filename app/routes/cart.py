@@ -15,8 +15,8 @@ def index():
 
 @cart.route('/products/cart/add/<int:product_id>', methods=['POST'])
 def add_to_cart(product_id):
-    quantity = int(request.form.get('quantity'))
-    if current_user.is_authenticated and quantity and product_id:
+    quantity = int(request.form.get('quantity')) if request.form.get('quantity') else 1 
+    if current_user.is_authenticated and product_id:
         user_cart = current_user.cart
         cart_item = CartItem.query.filter_by(cart_id=user_cart.id, product_id=product_id).first()    
         product = Product.query.get(product_id)

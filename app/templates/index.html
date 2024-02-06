@@ -270,14 +270,20 @@
                                                 </div> -->
                                                 <div class="action-link">
                                                     <div class="action-link-left">
-                                                        <a href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#modalAddcart">Add to Cart</a>
+                                                        <a hx-post="{{ url_for('cart.add_to_cart', product_id=product.id) }}" 
+                                                            hx-target="#modalAddcart" 
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalAddcart">Add to Cart
+                                                        </a>
                                                     </div>
                                                     <div class="action-link-right">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-product-id="{{ product.id }}"
+                                                        <a  data-bs-toggle="modal" data-bs-product-id="{{ product.id }}"
                                                             data-bs-target="#modalQuickview"><i class="icon-magnifier"></i></a>
-                                                        <a href="wishlist.html"><i class="icon-heart"></i></a>
-                                                        <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                                        <a  hx-post="{{ url_for('wishlist.add_to_wishlist', product_id=product.id) }}"
+                                                            hx-swap="none"
+                                                        >
+                                                            <i hx-swap-oob="true" id="action-link-item-{{ product.id }}" class="fa-heart fa-regular"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -384,15 +390,20 @@
                                                 </div> -->
                                                 <div class="action-link">
                                                     <div class="action-link-left">
-                                                        <a href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#modalAddcart">Add to Cart</a>
+                                                        <a hx-post="{{ url_for('cart.add_to_cart', product_id=product.id) }}" 
+                                                            hx-target="#modalAddcart" 
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalAddcart">Add to Cart
+                                                        </a>
                                                     </div>
                                                     <div class="action-link-right">
-                                                        <a href="#" data-bs-toggle="modal" data-bs-product-id="{{ product.id }}"
-                                                            data-bs-target="#modalQuickview"><i
-                                                                class="icon-magnifier"></i></a>
-                                                        <a href="wishlist.html"><i class="icon-heart"></i></a>
-                                                        <a href="compare.html"><i class="icon-shuffle"></i></a>
+                                                        <a  data-bs-toggle="modal" data-bs-product-id="{{ product.id }}"
+                                                            data-bs-target="#modalQuickview"><i class="icon-magnifier"></i></a>
+                                                        <a  hx-post="{{ url_for('wishlist.add_to_wishlist', product_id=product.id) }}"
+                                                            hx-swap="none"
+                                                        >
+                                                            <i hx-swap-oob="true" id="action-link-item-{{ product.id }}" class="fa-heart fa-regular"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

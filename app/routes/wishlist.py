@@ -23,12 +23,15 @@ def update_wishlist_content():
 def add_to_wishlist(product_id):
     if current_user.is_authenticated and product_id:
         user_wishlist = current_user.wishlist
-        new_wishlist_item = WishlistItem(wishlist_id=user_wishlist.id, product_id=product_id)
-        db.session.add(new_wishlist_item)
-        db.session.commit()
+        add_wishlist_item = WishlistItem.query.filter_by(wishlist_id=user_wishlist.id, product_id=product_id).first()
+        if not add_wishlist_item:
+            add_wishlist_item = WishlistItem(wishlist_id=user_wishlist.id, product_id=product_id)
+            db.session.add(add_wishlist_item)
+            db.session.commit()
         
-        product_page_content = render_template('components/add-wishlist.html', wishlist_item=new_wishlist_item)
-        response = make_response(product_page_content)
+        product_page_content = render_template('components/add-wishlist.html', wishlist_item=add_wishlist_item)
+        item_box_content = f'<i hx-swap-oob="true" id="action-link-item-{product_id}" class="fa-heart fa-solid"></i>'
+        response = make_response(product_page_content + item_box_content)
         response.headers['HX-Trigger'] = 'updateWishlist'
         return response
     else:
