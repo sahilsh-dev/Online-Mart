@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, url_for
+from flask_login import current_user
 from app.models.product import Product
 from app.models.collection import Collection
 from app.models.category import Category
@@ -9,7 +10,10 @@ shop = Blueprint('shop', __name__)
 @shop.route('/shop')
 def index():
     products = Product.query.all()
-    return render_template('shop.html', products=products)
+    user_wishlist = []
+    if current_user.is_authenticated:
+        user_wishlist = [i.product_id for i in current_user.wishlist.wishlist_items]
+    return render_template('shop.html', products=products, user_wishlist=user_wishlist)
 
 
 @shop.route('/shop/search')
