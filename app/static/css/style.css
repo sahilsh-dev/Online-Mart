@@ -17891,6 +17891,10 @@ Pages - Contact
 /*****************************
 * Pages - Empty Cart
 *****************************/
+.empty-cart-section {
+    margin: 7%;
+}
+
 .emptycart-content .title {
     font-size: 32px;
     font-weight: 700;
