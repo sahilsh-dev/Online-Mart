@@ -1,30 +1,30 @@
 <tbody>
-{% for item in cart_items %}
-    <!-- Start Cart Single Item -->
-    <tr>
-        <td class="product_thumb">
-            <a href="{{ url_for('product.product_details', product_id=item.product.id) }}">
-                <img src="{{ url_for('static', filename='images/product/' + item.product.images[0].file_name) }}">
-            </a>
-        </td>
-        <td class="product_name">
-            <a href="{{ url_for('product.product_details', product_id=item.product.id) }}">
-            {{ item.product.product_name }}</a>
-        </td>
-        <td class="product-price">₹{{ item.product.price }}</td>
-        <td class="product_quantity"><label>Quantity</label>
-            <input min="1" max="100" value="{{ item.quantity }}" name="quantity-{{ item.id }}" type="number">
-        </td>
-        <td class="product_total">₹{{ item.product.price }}</td>
-        <td class="product_remove">
-            <a  hx-delete="{{ url_for('cart.remove_from_cart_table', cart_item_id=item.id) }}" 
-                hx-target="closest tbody"
-                hx-swap="outerHTML"
-            >
-                <i class="fa fa-trash-o"></i></a>
-            </a>
-        </td>
-    </tr> <!-- End Cart Single Item-->
-{% endfor %}
+    {% for item in cart_items %}
+        <!-- Start Cart Single Item -->
+        <tr>
+            <td class="product_thumb">
+                <a href="{{ url_for('product.product_details', product_id=item.product.id) }}">
+                    <img src="{{ url_for('static', filename='images/product/' + item.product.images[0].file_name) }}">
+                </a>
+            </td>
+            <td class="product_name">
+                <a href="{{ url_for('product.product_details', product_id=item.product.id) }}">
+                {{ item.product.product_name }}</a>
+            </td>
+            <td class="product-price">₹{{ item.product.price }}</td>
+            <td class="product_quantity"><label>Quantity</label>
+                <input min="1" max="100" value="{{ item.quantity }}" name="quantity_{{ item.id }}" type="number">
+            </td>
+            <td class="product_total">₹{{ item.product.price * item.quantity }}</td>
+            <td class="product_remove">
+                <a  hx-delete="{{ url_for('cart.remove_from_cart_table', cart_item_id=item.id) }}" 
+                    hx-target="closest tbody"
+                    hx-swap="outerHTML"
+                >
+                    <i class="fa fa-trash-o"></i></a>
+                </a>
+            </td>
+        </tr> <!-- End Cart Single Item-->
+    {% endfor %}
 </tbody>
 

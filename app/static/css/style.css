@@ -17049,11 +17049,11 @@ table {
     padding: 12px;
 }
 
-.coupon_code {
+#cart_totals {
     border: 1px solid #ededed;
     margin-top: 60px;
 }
-.coupon_code h3, .coupon_code .h3 {
+#cart_totals h3{
     color: #ffffff;
     line-height: 36px;
     padding: 5px 15px;

@@ -5,11 +5,12 @@ from flask_login import current_user
 from app.extensions import db
 
 cart = Blueprint('cart', __name__)
-
     
+
 @cart.route('/cart')
 def index():
-    return render_template('cart.html')
+    total_cart_cost = sum([item.product.price * item.quantity for item in current_user.cart.cart_items])
+    return render_template('cart.html', total_cart_cost=total_cart_cost)
 
 
 @cart.route('/cart/add/<int:product_id>', methods=['POST'])
@@ -55,13 +56,17 @@ def remove_from_cart_table(cart_item_id):
     delete_item = CartItem.query.get(cart_item_id)
     db.session.delete(delete_item)
     db.session.commit()
-    print('Item deleted')
     return render_template('components/cart-table-content.html', cart_items=current_user.cart.cart_items)
 
 
 @cart.route('/cart/table', methods=['POST'])
 def update_cart_table(): 
+    total_cart_cost = 0
     for item in current_user.cart.cart_items:
-        item.quantity = int(request.form.get(f'quantity-{item.id}'))
+        item.quantity = int(request.form.get(f'quantity_{item.id}'))
+        total_cart_cost += item.product.price * item.quantity
     db.session.commit()
-    return render_template('components/cart-table-content.html', cart_items=current_user.cart.cart_items)
+
+    cart_table_template = render_template ('components/cart-table-content.html', cart_items=current_user.cart.cart_items)
+    cart_totals_template = render_template('components/cart-totals.html', total_cart_cost=total_cart_cost)
+    return cart_table_template + cart_totals_template
