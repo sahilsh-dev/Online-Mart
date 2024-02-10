@@ -19411,6 +19411,6 @@ Pages - Contact
     transition: all 0.5s ease;
 }
 
-.action-link a {
+.action-link a, .cart-table-wrapper a {
     cursor: pointer;
 }

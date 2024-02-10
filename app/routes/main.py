@@ -20,7 +20,6 @@ def index():
     user_wishlist = []
     if current_user.is_authenticated:
         user_wishlist = [i.product_id for i in current_user.wishlist.wishlist_items]
-    print(user_wishlist)
     return render_template(
         'index.html', 
         new_arrivals=new_arrivals, 

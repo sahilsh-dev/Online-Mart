@@ -1,9 +1,8 @@
 from flask import Blueprint, render_template, request
 from app.models.product import Product
-from app.models.cart import Cart, CartItem
+from app.models.cart import CartItem
 from flask_login import current_user
 from app.extensions import db
-from app.models.wishlist import WishlistItem
 
 cart = Blueprint('cart', __name__)
 
@@ -49,3 +48,20 @@ def remove_cart_item(cart_item_id):
         return render_template('components/cart-content.html', cart_items=current_user.cart.cart_items) + cart_count_template
     else:
         return ('<h2>Error! Please login</h2>')
+
+
+@cart.route('/cart/table/<int:cart_item_id>', methods=['DELETE'])
+def remove_from_cart_table(cart_item_id):
+    delete_item = CartItem.query.get(cart_item_id)
+    db.session.delete(delete_item)
+    db.session.commit()
+    print('Item deleted')
+    return render_template('components/cart-table-content.html', cart_items=current_user.cart.cart_items)
+
+
+@cart.route('/cart/table', methods=['POST'])
+def update_cart_table(): 
+    for item in current_user.cart.cart_items:
+        item.quantity = int(request.form.get(f'quantity-{item.id}'))
+    db.session.commit()
+    return render_template('components/cart-table-content.html', cart_items=current_user.cart.cart_items)
