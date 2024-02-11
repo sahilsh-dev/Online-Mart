@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% from 'macros.html' import render_breadcrumb %}
 
+{% block head %}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
 {% block content %} 
     {% if cart_items %}
     {{ render_breadcrumb('Cart', 'Shop', url_for('shop.index')) }}
@@ -69,7 +73,7 @@
                                 <img class="img-fluid" src="{{ url_for('static', filename='images/empty-cart/empty-cart.png' ) }}">
                             </div>
                             <h4 class="title">Your Cart is Empty</h4>
-                            <h6 class="sub-title">Sorry Mate... No item Found inside your cart!</h6>
+                            <h6 class="sub-title">Sorry mate... No item found inside your cart!</h6>
                             <a href="{{ url_for('shop.index') }}" class="btn btn-lg btn-golden">Continue Shopping</a>
                         </div>
                     </div>

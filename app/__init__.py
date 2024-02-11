@@ -34,5 +34,8 @@ def create_app():
     from app.routes.wishlist import wishlist
     app.register_blueprint(wishlist)
     
+    from app.routes.checkout import checkout
+    app.register_blueprint(checkout)
+    
     return app
     
