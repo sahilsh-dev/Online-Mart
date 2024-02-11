@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from app.models.product import Product
 from app.models.cart import CartItem
+from app.models.wishlist import WishlistItem
 from flask_login import current_user
 from app.extensions import db
 
@@ -11,24 +12,29 @@ cart = Blueprint('cart', __name__)
 def index():
     total_cart_cost = sum([item.product.price * item.quantity for item in current_user.cart.cart_items])
     return render_template('cart.html', total_cart_cost=total_cart_cost)
+    
+    
+def handle_add_to_cart(user_cart, product_id, quantity=1):
+    cart_item = CartItem.query.filter_by(cart_id=user_cart.id, product_id=product_id).first()    
+    product = Product.query.get(product_id)
+    if cart_item:
+        cart_item.quantity = quantity
+        db.session.commit()
+    else:
+        new_cart_item = CartItem(cart_id=user_cart.id, product_id=product_id, quantity=quantity)
+        db.session.add(new_cart_item)
+        db.session.commit()
+    return product
 
 
 @cart.route('/cart/add/<int:product_id>', methods=['POST'])
 def add_to_cart(product_id):
-    quantity = int(request.form.get('quantity')) if request.form.get('quantity') else 1 
+    quantity = int(request.form.get('quantity')) if request.form.get('quantity') else 1
     if current_user.is_authenticated and product_id:
         user_cart = current_user.cart
-        cart_item = CartItem.query.filter_by(cart_id=user_cart.id, product_id=product_id).first()    
-        product = Product.query.get(product_id)
-        if cart_item:
-            cart_item.quantity = quantity
-            db.session.commit()
-        else:
-            new_cart_item = CartItem(cart_id=user_cart.id, product_id=product_id, quantity=quantity)
-            db.session.add(new_cart_item)
-            db.session.commit()
-            
-        add_item_modal_template = render_template('components/add-cart-modal.html', product=product, item_quantity=quantity) 
+        new_cart_product = handle_add_to_cart(user_cart, product_id, quantity)
+             
+        add_item_modal_template = render_template('components/add-cart-modal.html', product=new_cart_product, item_quantity=quantity) 
         cart_content_template = render_template('components/cart-content.html', cart_items=user_cart.cart_items)
         
         num_cart_items = len(current_user.cart.cart_items)

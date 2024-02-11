@@ -52,3 +52,12 @@ def remove_wishlist_item(wishlist_item_id):
         return response
     else:
         return ('<h2>Error! Please login</h2>')
+
+
+@wishlist.route('/wishlist/table/<int:wishlist_item_id>', methods=['DELETE'])
+def remove_from_wishlist_table(wishlist_item_id):
+    delete_item = WishlistItem.query.get(wishlist_item_id)
+    db.session.delete(delete_item)
+    db.session.commit()
+    return render_template('components/wishlist-table-content.html', wishlist_items=current_user.wishlist.wishlist_items)    
+

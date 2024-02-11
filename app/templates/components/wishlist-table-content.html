@@ -1,0 +1,34 @@
+<tbody>
+    {% for item in wishlist_items %}
+        <!-- Start Wishlist Single Item-->
+        <tr>
+            <td class="product_thumb">
+                <a href="{{ url_for('product.product_details', product_id=item.product.id) }}">
+                    <img src="{{ url_for('static', filename='images/product/' + item.product.images[0].file_name) }}">
+                </a>
+            </td>
+            <td class="product_name">
+                <a href="{{ url_for('product.product_details', product_id=item.product.id) }}">
+                {{ item.product.product_name }}</a>
+            </td>
+            <td class="product-price">₹{{ item.product.price }}</td>
+            <td class="product_stock">{% if item.product.stock_quantity > 0 %} In Stock {% else %} Out of Stock {% endif %}</td>
+            <td class="product_remove">
+                <a hx-delete="{{ url_for('wishlist.remove_from_wishlist_table', wishlist_item_id=item.id) }}"
+                    hx-target="closest tbody"
+                    hx-swap="outerHTML"
+                >
+                    <i class="fa fa-trash-o"></i>
+                </a>
+            </td>           
+            <td class="product_addcart">
+                <a  hx-post="{{ url_for('cart.add_to_cart', product_id=item.product_id) }}"
+                    hx-target="#modalAddcart"
+                    class="btn btn-md btn-golden"
+                    data-bs-toggle="modal" data-bs-target="#modalAddcart">
+                    Add To Cart
+                </a>
+            </td>
+        </tr> <!-- End Wishlist Single Item-->
+    {% endfor %}
+</tbody>

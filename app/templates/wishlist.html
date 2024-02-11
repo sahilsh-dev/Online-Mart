@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import render_breadcrumb %}
+
+{% block content %}
+    {% if wishlist_items %}
+    {{ render_breadcrumb('Wishlist', 'Shop', url_for('shop.index')) }}
+    <!-- ...:::: Start Wishlist Section:::... -->
+    <div class="wishlist-section">
+        <!-- Start Cart Table -->
+        <div class="wishlish-table-wrapper" data-aos="fade-up" data-aos-delay="0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table_desc">
+                            <div class="table_page table-responsive">
+                                <table>
+                                    <!-- Start Wishlist Table Head -->
+                                    <thead>
+                                        <tr>
+                                            <th class="product_thumb">Image</th>
+                                            <th class="product_name">Product</th>
+                                            <th class="product-price">Price</th>
+                                            <th class="product_stock">Stock Status</th>
+                                            <th class="product_remove">Remove</th>
+                                            <th class="product_addcart">Add To Cart</th>
+                                        </tr>
+                                    </thead> <!-- End Cart Table Head -->
+                                    {% include 'components/wishlist-table-content.html' %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End Cart Table -->
+    </div> <!-- ...:::: End Wishlist Section:::... -->
+
+    {% else %}
+
+    <div class="empty-cart-section section-fluid">
+        <div class="emptycart-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1 col-xl-6 offset-xl-3">
+                        <div class="emptycart-content text-center">
+                            <div class="image">
+                                <img class="img-fluid" src="{{ url_for('static', filename='images/empty-cart/empty-cart.png' ) }}">
+                            </div>
+                            <h4 class="title">Your Wishlist is Empty</h4>
+                            <h6 class="sub-title">Sorry mate... No item found inside your wishlist!</h6>
+                            <a href="{{ url_for('shop.index') }}" class="btn btn-lg btn-golden">Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
