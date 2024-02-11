@@ -13,10 +13,8 @@
         <p class="cart_amount">₹{{ total_cart_cost }}</p>
     </div>
     <div class="checkout_btn">
-        <a hx-post="{{ url_for('checkout.create_checkout_session') }}" 
-            id="checkout-button"
-            class="btn btn-md btn-golden">
-            Proceed to Checkout
-        </a>
+        <form action="{{ url_for('checkout.create_checkout_session') }}" method="POST">
+            <button id="checkout-button" class="btn btn-md btn-golden" type="submit">Proceed to Checkout</button>
+        </form>
     </div>
 </div>
