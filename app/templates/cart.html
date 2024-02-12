@@ -53,7 +53,14 @@
                     <div class="col-lg-6 col-md-6">
                         <div id="cart_totals" data-aos="fade-up" data-aos-delay="400">
                             <h3>Cart Totals</h3>
-                            {% include 'components/cart-totals.html' %}
+                            <div class="coupon_inner">
+                                {% include 'components/cart-totals.html' %}
+                                <div class="checkout_btn">
+                                    <form action="{{ url_for('checkout.create_checkout_session') }}" method="POST">
+                                        <button id="checkout-button" class="btn btn-md btn-golden" type="submit">Proceed to Checkout</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
