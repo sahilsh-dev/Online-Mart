@@ -3,6 +3,7 @@ import stripe
 from flask import Blueprint, render_template, redirect, request, url_for
 from flask_login import current_user
 from app.extensions import db
+from app.models.order import Order, OrderItem, OrderStatusEnum
 
 checkout = Blueprint('checkout', __name__)
 stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
@@ -10,7 +11,6 @@ stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
 
 @checkout.route('/checkout/create-checkout-session', methods=['POST'])
 def create_checkout_session():
-    print('User is checking out!')
     checkout_data = []
     for item in current_user.cart.cart_items:
         item_data = {
@@ -24,7 +24,6 @@ def create_checkout_session():
             'quantity': item.quantity
         }
         checkout_data.append(item_data)
-    print(checkout_data)    
     try:
         checkout_session = stripe.checkout.Session.create(
             line_items = checkout_data,
@@ -40,7 +39,17 @@ def create_checkout_session():
 
 @checkout.route('/checkout/success')
 def checkout_success():
-    db.session.delete(current_user.cart.cart_items)
+    new_order = Order(user_id=current_user.id, status=OrderStatusEnum.PROCESSING)
+    for item in current_user.cart.cart_items:
+        order_item = OrderItem(
+            order_id=new_order.id,
+            product_id=item.product_id,
+            quantity=item.quantity,
+            price=item.product.price
+        )
+        new_order.order_items.append(order_item)
+        db.session.delete(item)
+    db.session.add(new_order)
     db.session.commit()
     return render_template('checkout/success.html')
 
