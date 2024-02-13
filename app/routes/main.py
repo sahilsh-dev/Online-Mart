@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import current_user
 from app.forms import AddressForm, AccountDetailsForm
 from werkzeug.security import generate_password_hash
@@ -17,14 +17,18 @@ def index():
     new_arrivals = Product.query.filter(Product.created_at > threshold_date).all() 
     best_sellers_collection = Collection.query.get('best sellers').products
     best_sellers = [Product.query.get(collection_item.product_id) for collection_item in best_sellers_collection]
+    
     user_wishlist = []
     if current_user.is_authenticated:
         user_wishlist = [i.product_id for i in current_user.wishlist.wishlist_items]
+    checkout_success = request.args.get('checkout_success')
+    print(checkout_success)
     return render_template(
         'index.html', 
         new_arrivals=new_arrivals, 
         best_sellers=best_sellers, 
         user_wishlist=user_wishlist,
+        checkout_success=checkout_success,
         page='home'
     )
 

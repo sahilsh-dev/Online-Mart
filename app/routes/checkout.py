@@ -51,10 +51,10 @@ def checkout_success():
         db.session.delete(item)
     db.session.add(new_order)
     db.session.commit()
-    return render_template('checkout/success.html')
+    return redirect(url_for('main.index', checkout_success=True))
 
 
 @checkout.route('/checkout/cancel')
 def checkout_cancel():
-    return render_template('checkout/cancel.html') 
+    return redirect(url_for('main.index', checkout_success=False))
 

@@ -8,6 +8,17 @@
         <div class="hero-slider-active swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
+                {{ checkout_success }}
+                {% if checkout_success == 'True' %}
+                    <div class="alert alert-success" role="alert">
+                        Your order has been placed successfully. Thank you for shopping with us 💛️
+                    </div>
+                {% elif checkout_success == 'False' %}
+                    <div class="alert alert-warning" role="alert">
+                        The order couldn't be processed. Please try again.
+                    </div>
+                {% endif %}
+
                 <!-- Start Hero Single Slider Item -->
                 <div class="hero-single-slider-item swiper-slide">
                     <!-- Hero Slider Image -->

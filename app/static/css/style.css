@@ -19427,3 +19427,13 @@ Pages - Contact
     margin-top: 10%;
     gap: 3%;
 }
+
+.swiper-wrapper > .alert{
+    min-width: 40%;
+    position: absolute;
+    left: 50%; 
+    transform: translate(-50%);
+    z-index: 2;
+    font-size: medium;
+    text-align: center;
+}

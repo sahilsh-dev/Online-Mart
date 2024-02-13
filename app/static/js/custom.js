@@ -83,3 +83,11 @@ if (editAddressBtn) {
         addressForm.style.display = 'block';
     })
 }
+
+$(function(){
+    setTimeout(function() {
+        $(".swiper-wrapper > .alert").fadeTo(700, 0).slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 5000);
+});
