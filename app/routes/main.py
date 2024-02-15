@@ -66,4 +66,3 @@ def account():
         account_form=account_form
     )
     
-

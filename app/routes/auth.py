@@ -1,13 +1,12 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, make_response
-from app.extensions import db
+from app.extensions import db, login_manager
 from app.forms import RegisterForm, LoginForm
 from flask_login import login_user, logout_user, current_user
-from app.extensions import login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
 from app.models.user import User
 from app.models.cart import Cart
 from app.models.wishlist import Wishlist
-from functools import wraps
 
 auth = Blueprint('auth', __name__)
 

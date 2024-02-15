@@ -17519,6 +17519,8 @@ table {
 *****************************/
 .error-form {
     text-align: center;
+    margin-top: 10%;
+    margin-bottom: 5%;
 }
 .error-form .big-title {
     font-weight: 600;

@@ -1,7 +1,8 @@
-from app.models.category import Category
+from flask import render_template
 from flask_login import current_user
-from app.extensions import login_manager
 from hashlib import md5
+from app.extensions import login_manager
+from app.models.category import Category
 from app.models.user import User
 
 
@@ -28,6 +29,10 @@ def inject_globals():
         num_wishlist_items=len(wishlist_items),
         num_cart_items=len(cart_items)
     )
+
+
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 @login_manager.user_loader

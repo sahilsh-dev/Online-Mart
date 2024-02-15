@@ -1,6 +1,7 @@
 from flask import Flask
 import os
-from app.extensions import db, login_manager 
+from .extensions import db, login_manager 
+from .routes.globals import inject_globals, page_not_found
 
 
 def create_app(): 
@@ -12,9 +13,6 @@ def create_app():
 
     db.init_app(app)
     login_manager.init_app(app)
-
-    from app.routes.globals import inject_globals
-    app.context_processor(inject_globals)
 
     from app.routes.main import main
     app.register_blueprint(main)
@@ -36,6 +34,9 @@ def create_app():
     
     from app.routes.checkout import checkout
     app.register_blueprint(checkout)
+    
+    app.context_processor(inject_globals)
+    app.register_error_handler(404, page_not_found)
     
     return app
     
