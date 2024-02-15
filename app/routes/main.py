@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.forms import AddressForm, AccountDetailsForm
 from werkzeug.security import generate_password_hash
 from app.extensions import db
@@ -22,7 +22,6 @@ def index():
     if current_user.is_authenticated:
         user_wishlist = [i.product_id for i in current_user.wishlist.wishlist_items]
     checkout_success = request.args.get('checkout_success')
-    print(checkout_success)
     return render_template(
         'index.html', 
         new_arrivals=new_arrivals, 
@@ -34,10 +33,8 @@ def index():
 
 
 @main.route('/account', methods=['GET', 'POST'])
+@login_required
 def account():
-    if not current_user.is_authenticated:
-        return redirect(url_for('auth.login'))
-    
     orders = current_user.orders
     order_prices = [sum([item.price for item in order.order_items]) for order in orders]
     user_address = UserAddress.query.filter_by(user_id=current_user.id).first()

@@ -1,11 +1,13 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, make_response
 from app.extensions import db
 from app.forms import RegisterForm, LoginForm
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
+from app.extensions import login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.user import User
 from app.models.cart import Cart
 from app.models.wishlist import Wishlist
+from functools import wraps
 
 auth = Blueprint('auth', __name__)
 
@@ -70,3 +72,22 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+
+def htmx_login_required(get_response):
+    @wraps(get_response)
+    def middleware(*args, **kwargs):   
+        print("middleware")
+        if not current_user.is_authenticated:
+            response = make_response()
+            response.headers["HX-Redirect"] = url_for('auth.login')
+            flash("You must be logged in to perform this action")
+            return response
+        return get_response(*args, **kwargs)
+    return middleware
+    
+
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    flash("You must be logged in to access this page")
+    return redirect(url_for('auth.login'))

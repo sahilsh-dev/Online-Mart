@@ -15,8 +15,6 @@ function replaceImages(imagePaths) {
 
         largeImage.src = imagePath;
         thumbnailImage.src = imagePath;
-
-        // Show the images
         largeImage.style.display = 'block';
         thumbnailImage.style.display = 'block';
     });
@@ -37,7 +35,6 @@ quickviewModal.addEventListener('show.bs.modal', function (event) {
         })
         .catch(error => console.error('Error fetching product data:', error));
 });
-
 
 // Search Modal
 
@@ -73,7 +70,6 @@ const updateResults = () => {
 
 const updateSearchResults = debounce(() => updateResults());
 
-
 // Show Address Form
 
 const editAddressBtn = document.querySelector('#address .view');
@@ -83,6 +79,8 @@ if (editAddressBtn) {
         addressForm.style.display = 'block';
     })
 }
+
+// Fade Out Alert Messages
 
 $(function(){
     setTimeout(function() {

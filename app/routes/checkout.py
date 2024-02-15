@@ -1,7 +1,7 @@
 import os
 import stripe
-from flask import Blueprint, render_template, redirect, request, url_for
-from flask_login import current_user
+from flask import Blueprint, redirect, url_for
+from flask_login import current_user, login_required
 from app.extensions import db
 from app.models.order import Order, OrderItem, OrderStatusEnum
 
@@ -10,6 +10,7 @@ stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
 
 
 @checkout.route('/checkout/create-checkout-session', methods=['POST'])
+@login_required
 def create_checkout_session():
     checkout_data = []
     for item in current_user.cart.cart_items:
