@@ -66,3 +66,13 @@ def account():
         account_form=account_form
     )
     
+    
+@main.route('/about-us')
+def about_us():
+    return render_template('about-us.html')
+
+    
+@main.route('/contact-us')
+def contact_us():
+    return render_template('contact-us.html')
+    
